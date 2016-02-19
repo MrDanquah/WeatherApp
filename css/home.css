@@ -1,0 +1,31 @@
+.root {
+     -fx-background-color: #7d7d7d;
+}
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "artill clean weather icons";
+    -fx-font-size: 40pt;
+    -fx-background-radius: 0;
+    -fx-background-color: #7d7d7d;
+}
+
+.button:pressed {
+	-fx-opacity: 0.5;
+}
+
+#btn1 {
+	-fx-background-color: #00bff3;
+}
+
+#btn2 {
+	-fx-background-color: #fbaf5d;
+}
+
+#btn3 {
+	-fx-background-color: #3cb878;
+}
+
+#btn4 {
+	-fx-background-color: #f26d7d;
+}
