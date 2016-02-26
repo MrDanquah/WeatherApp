@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javafx.application.Application;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class WeatherApp extends Application{
@@ -16,6 +17,8 @@ public class WeatherApp extends Application{
     
     @Override
     public void start(Stage primaryStage) {
+    	Font.loadFont(getClass().getResource("/artill_clean_icons.otf").toExternalForm(), 12f);
+    	
     	window = primaryStage;
     	window.setTitle("Hello World!");
     	window.setResizable(false); // Not resizable
