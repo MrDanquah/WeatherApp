@@ -17,10 +17,11 @@ public class WeatherApp extends Application{
     
     @Override
     public void start(Stage primaryStage) {
+    	// Load the custom weather icons font
     	Font.loadFont(getClass().getResource("/artill_clean_icons.otf").toExternalForm(), 12f);
     	
     	window = primaryStage;
-    	window.setTitle("Hello World!");
+    	window.setTitle("Commuter weather app");
     	window.setResizable(false); // Not resizable
     	
     	Page overview = new PgOverview();

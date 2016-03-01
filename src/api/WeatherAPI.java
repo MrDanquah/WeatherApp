@@ -9,13 +9,13 @@ public class WeatherAPI
 {
 	static String theWeatherRSS;
 	static String theCity;
-	static ArrayList<Forecast> weatherForecastList;
+	public static ArrayList<Forecast> weatherForecastList;
 	
 	public class Forecast
 	{
-		String lowTemp;
-		String highTemp;
-		String dateTemp;
+		public String lowTemp;
+		public String highTemp;
+		public String dateTemp;
 		String textTemp;
 	}
 
