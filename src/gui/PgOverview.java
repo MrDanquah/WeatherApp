@@ -4,18 +4,23 @@ import java.util.HashMap;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.text.TextAlignment;
 import api.WeatherAPI;
 
 public class PgOverview extends Page{
 	
 	public class ForecastPane {
-		public BorderPane pane;
+		public HBox infoPane;
 		private Label weatherIcon;
 		
 		private String[] weatherIconMap = {
@@ -32,31 +37,34 @@ public class PgOverview extends Page{
 		};
 		
 		public ForecastPane(WeatherAPI weather, int daysAhead) {
-			pane = new BorderPane();
+			infoPane = new HBox();
+			infoPane.setPadding(Insets.EMPTY);
+			infoPane.setAlignment(Pos.CENTER);
 			
 			Label date = new Label(weather.weatherForecastList.get(daysAhead).dateTemp);
 			date.getStyleClass().add("date");
-			//date.setPrefWidth(110);
-			BorderPane.setAlignment(date, Pos.CENTER);
-			pane.setLeft(date);
+			date.setPrefWidth(110);
+			date.setAlignment(Pos.CENTER_LEFT);
+			infoPane.getChildren().add(date);
 			
 			weatherIcon = new Label("1");
 			weatherIcon.getStyleClass().add("weathericon");
-			//weatherIcon.setPrefWidth(100);
-			BorderPane.setAlignment(weatherIcon, Pos.CENTER);
-			pane.setCenter(weatherIcon);
+			weatherIcon.setTranslateY(-5);
+			weatherIcon.setPrefWidth(100);
+			weatherIcon.setAlignment(Pos.CENTER);
+			infoPane.getChildren().add(weatherIcon);
 			
 			Label temps = new Label(weather.weatherForecastList.get(daysAhead).lowTemp + " " + 
 					weather.weatherForecastList.get(daysAhead).highTemp);
 			temps.getStyleClass().add("temps");
-			//temps.setPrefWidth(110);
-			BorderPane.setAlignment(temps, Pos.CENTER);
-			pane.setRight(temps);
+			temps.setPrefWidth(110);
+			temps.setAlignment(Pos.CENTER);
+			infoPane.getChildren().add(temps);
 			
 		}
 		
-		public BorderPane getPane() {
-			return pane;
+		public HBox getPane() {
+			return infoPane;
 		}
 		
 		public void changeWeatherIcon(int weather) {
@@ -77,13 +85,15 @@ public class PgOverview extends Page{
 		Button btn1 = new Button();
 		btn1.setGraphic((new ForecastPane(weather, 0)).getPane());
         btn1.setPrefSize(320, 108);
+        btn1.setMaxHeight(108);
         btn1.setId("btn1");
         btn1.setOnAction(e -> {
         	System.out.println("changing to triplist");
         	WeatherApp.changePage("triplist");
         });
-        GridPane.setRowIndex(btn1, 1);
-        GridPane.setColumnIndex(btn1, 1);
+        GridPane.setRowIndex(btn1, 0);
+        GridPane.setColumnIndex(btn1, 0);
+        GridPane.setVgrow(btn1, Priority.NEVER);
         pageGrid.getChildren().add(btn1);
         
         ForecastPane forePane = new ForecastPane(weather, 1);
@@ -91,19 +101,21 @@ public class PgOverview extends Page{
         Button btn2 = new Button();
         btn2.setGraphic(forePane.getPane());
         btn2.setPrefSize(320, 108);
+        btn2.setMaxHeight(108);
         btn2.setId("btn2");
         btn2.setOnAction(e -> {
         	weathercount++;
         	System.out.println(weathercount);
         	forePane.changeWeatherIcon(weathercount);
         });
-        GridPane.setRowIndex(btn2, 2);
-        GridPane.setColumnIndex(btn2, 1);
+        GridPane.setRowIndex(btn2, 1);
+        GridPane.setColumnIndex(btn2, 0);
         pageGrid.getChildren().add(btn2);
         
         Button btn3 = new Button();
         btn3.setGraphic((new ForecastPane(weather, 2)).getPane());
         btn3.setPrefSize(320, 108);
+        btn3.setMaxHeight(108);
         btn3.setId("btn3");
         btn3.setOnAction(new EventHandler<ActionEvent>() {
  
@@ -112,13 +124,14 @@ public class PgOverview extends Page{
                 System.out.println("BTN3 pressed!");
             }
         });
-        GridPane.setRowIndex(btn3, 3);
-        GridPane.setColumnIndex(btn3, 1);
+        GridPane.setRowIndex(btn3, 2);
+        GridPane.setColumnIndex(btn3, 0);
         pageGrid.getChildren().add(btn3);
         
         Button btn4 = new Button();
         btn4.setGraphic((new ForecastPane(weather, 3)).getPane());
         btn4.setPrefSize(320, 108);
+        btn4.setMaxHeight(108);
         btn4.setId("btn4");
         btn4.setOnAction(new EventHandler<ActionEvent>() {
  
@@ -127,8 +140,8 @@ public class PgOverview extends Page{
                 System.out.println("BTN4 pressed!");
             }
         });
-        GridPane.setRowIndex(btn4, 4);
-        GridPane.setColumnIndex(btn4, 1);
+        GridPane.setRowIndex(btn4, 3);
+        GridPane.setColumnIndex(btn4, 0);
         pageGrid.getChildren().add(btn4);
 	}
 

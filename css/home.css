@@ -5,6 +5,7 @@
 .button {
     -fx-background-radius: 0;
     -fx-background-color: #7d7d7d;
+    -fx-padding: 0;
 }
 
 .button:pressed {
@@ -27,6 +28,7 @@
     -fx-text-fill: gray;
     -fx-font-family: "Helvetica";
     -fx-font-size: 24pt;
+    -fx-alignment: center-right;
 }
 
 #btn1 {
