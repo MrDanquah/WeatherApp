@@ -11,7 +11,7 @@ public abstract class Page {
 	public Page() {
 		pageGrid = new GridPane();
         
-		createButtons();
+		createContent();
 		
         pageScene = new Scene(pageGrid, 320, 480);
         pageScene.getStylesheets().add(
@@ -26,6 +26,6 @@ public abstract class Page {
 		return pageScene;
 	}
 	
-	abstract void createButtons();
+	abstract void createContent();
 	abstract void refreshPage();
 }

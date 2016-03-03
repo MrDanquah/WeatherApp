@@ -10,9 +10,8 @@ import java.net.URLEncoder;
 public class YWeatherConnection {
 
 	public void searchQuery(String city) {
-		
-		city.toLowerCase();
-		String query = "select * from weather.forecast where woeid in (select woeid from geo.places where text='san francisco, ca')";
+		String query = "select * from weather.forecast where woeid in "
+				+ "(select woeid from geo.places where text='" + city.toLowerCase() + "')";
 		String API_KEY = "dj0yJmk9ZUVqWHRabkRxdlZLJmQ9WVdrOVNERlFibnBHTjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02ZA--";
 
 	    URL url;
@@ -25,7 +24,7 @@ public class YWeatherConnection {
                     .getInputStream()));
             String inputLine = "";
             while ((inputLine = in.readLine()) != null) {
-                    System.out.println(query + "  " + inputLine);
+                    System.out.println(inputLine);
                 }
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,10 +33,14 @@ public class YWeatherConnection {
 
 	}
 	
+	private void parseWeatherJSON(String jsonString) {
+		
+	}
+	
 	public static void main(String args[]) {
 		YWeatherConnection myWeather = new YWeatherConnection();
 		
-		myWeather.searchQuery("London");
+		myWeather.searchQuery("tower hamlets");
 	}
 
 }

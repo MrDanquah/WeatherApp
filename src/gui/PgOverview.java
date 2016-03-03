@@ -1,25 +1,18 @@
 package gui;
 
-import java.util.HashMap;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.text.TextAlignment;
 import api.WeatherAPI;
 
 public class PgOverview extends Page{
 	
-	public class ForecastPane {
+	public static class ForecastPane {
 		public HBox infoPane;
 		private Label weatherIcon;
 		
@@ -79,7 +72,7 @@ public class PgOverview extends Page{
 	int weathercount = 0;
 	
 	@Override
-	void createButtons() {
+	void createContent() {
 		WeatherAPI weather = new WeatherAPI("44418");
 		
 		Button btn1 = new Button();
@@ -93,7 +86,6 @@ public class PgOverview extends Page{
         });
         GridPane.setRowIndex(btn1, 0);
         GridPane.setColumnIndex(btn1, 0);
-        GridPane.setVgrow(btn1, Priority.NEVER);
         pageGrid.getChildren().add(btn1);
         
         ForecastPane forePane = new ForecastPane(weather, 1);
