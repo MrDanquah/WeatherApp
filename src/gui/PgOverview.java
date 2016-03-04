@@ -33,6 +33,8 @@ public class PgOverview extends Page{
 			infoPane = new HBox();
 			infoPane.setPadding(Insets.EMPTY);
 			infoPane.setAlignment(Pos.CENTER);
+			infoPane.setMaxHeight(108);
+			infoPane.setId("infopane");
 			
 			Label date = new Label(weather.weatherForecastList.get(daysAhead).dateTemp);
 			date.getStyleClass().add("date");

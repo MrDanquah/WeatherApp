@@ -20,8 +20,8 @@
 
 .weathericon {
     -fx-text-fill: white;
-    -fx-font-family: "artill clean weather icons";
-    -fx-font-size: 60pt;
+    -fx-font-family: "artill clean fixed";
+    -fx-font-size: 52pt;
 }
 
 .temps {

@@ -18,7 +18,7 @@ public class WeatherApp extends Application{
     @Override
     public void start(Stage primaryStage) {
     	// Load the custom weather icons font
-    	Font.loadFont(getClass().getResource("/artill_clean_icons.otf").toExternalForm(), 12f);
+    	Font.loadFont(getClass().getResource("/artillclean_fixed.otf").toExternalForm(), 12f);
     	
     	window = primaryStage;
     	window.setTitle("Commuter weather app");
