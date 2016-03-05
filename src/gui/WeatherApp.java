@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 public class WeatherApp extends Application{
 	static Stage window;
 	private static Map<String, Page> pages = new HashMap<String, Page>();
+	static Trip trips[];
 	
 	public static void main(String[] args) {
         launch(args);

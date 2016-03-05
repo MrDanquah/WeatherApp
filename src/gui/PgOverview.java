@@ -12,7 +12,7 @@ import api.WeatherAPI;
 
 public class PgOverview extends Page{
 	
-	public static class ForecastPane {
+	public class ForecastPane {
 		public HBox infoPane;
 		private Label weatherIcon;
 		
@@ -31,10 +31,7 @@ public class PgOverview extends Page{
 		
 		public ForecastPane(WeatherAPI weather, int daysAhead) {
 			infoPane = new HBox();
-			infoPane.setPadding(Insets.EMPTY);
 			infoPane.setAlignment(Pos.CENTER);
-			infoPane.setMaxHeight(108);
-			infoPane.setId("infopane");
 			
 			Label date = new Label(weather.weatherForecastList.get(daysAhead).dateTemp);
 			date.getStyleClass().add("date");
@@ -44,6 +41,7 @@ public class PgOverview extends Page{
 			
 			weatherIcon = new Label("1");
 			weatherIcon.getStyleClass().add("weathericon");
+			weatherIcon.setId("overviewwicon");
 			weatherIcon.setTranslateY(-5);
 			weatherIcon.setPrefWidth(100);
 			weatherIcon.setAlignment(Pos.CENTER);

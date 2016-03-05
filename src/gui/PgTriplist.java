@@ -1,17 +1,115 @@
 package gui;
 
-import gui.PgOverview.ForecastPane;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import java.util.Calendar;
+import java.util.Date;
+
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.GridPane;
-import api.WeatherAPI;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 public class PgTriplist extends Page{
 	private ScrollPane scrollPane;
 	private GridPane scrollContent;
+	
+	public class TriplistPane {
+		public HBox infoPane;
+		
+		public TriplistPane(Trip trip) {
+			infoPane = new HBox();
+			infoPane.setAlignment(Pos.CENTER);
+			infoPane.getStyleClass().add("bordered");
+			
+			// Start location info
+			VBox startPane = new VBox();
+			startPane.getStyleClass().add("bordered");
+			startPane.setPrefWidth(150);
+			
+			Label startName = new Label(trip.getStart());
+			startName.getStyleClass().add("locname");
+			startName.setAlignment(Pos.CENTER_LEFT);
+			startPane.getChildren().add(startName);
+			
+			HBox startWeatherPane = new HBox();
+			startWeatherPane.setAlignment(Pos.CENTER);
+			
+			Label startWeatherIcon = new Label("1");
+			startWeatherIcon.getStyleClass().add("weathericon");
+			startWeatherIcon.setId("triplistwicon");
+			startWeatherIcon.setPrefWidth(75);
+			startWeatherIcon.setTranslateY(-5);
+			startWeatherIcon.setAlignment(Pos.CENTER);
+			startWeatherPane.getChildren().add(startWeatherIcon);
+			
+			Label startTemp = new Label("1");
+			startTemp.getStyleClass().add("triplisttemp");
+			startTemp.setPrefWidth(75);
+			startTemp.setAlignment(Pos.CENTER);
+			startWeatherPane.getChildren().add(startTemp);
+			
+			startPane.getChildren().add(startWeatherPane);
+			
+			Label leaveTime = new Label("Leave " + trip.getLeaveTime());
+			leaveTime.getStyleClass().add("triplisttime");
+			leaveTime.setAlignment(Pos.CENTER_LEFT);
+			startPane.getChildren().add(leaveTime);
+			
+			infoPane.getChildren().add(startPane);
+			
+			// Arrow
+			Label arrow = new Label(">");
+			arrow.getStyleClass().add("arrow");
+			arrow.setAlignment(Pos.CENTER);
+			infoPane.getChildren().add(arrow);
+			
+			// Destination location info
+			VBox destPane = new VBox();
+			destPane.getStyleClass().add("bordered");
+			destPane.setPrefWidth(150);
+			
+			Label destName = new Label(trip.getDest());
+			destName.getStyleClass().add("locname");
+			destName.setAlignment(Pos.CENTER_RIGHT);
+			destName.setTextAlignment(TextAlignment.RIGHT);
+			destPane.getChildren().add(destName);
+			
+			HBox destWeatherPane = new HBox();
+			destWeatherPane.setAlignment(Pos.CENTER);
+			
+			Label destWeatherIcon = new Label("1");
+			destWeatherIcon.getStyleClass().add("weathericon");
+			destWeatherIcon.setId("triplistwicon");
+			destWeatherIcon.setPrefWidth(75);
+			destWeatherIcon.setTranslateY(-5);
+			destWeatherIcon.setAlignment(Pos.CENTER);
+			destWeatherPane.getChildren().add(destWeatherIcon);
+			
+			Label destTemp = new Label("1");
+			destTemp.getStyleClass().add("triplisttemp");
+			destTemp.setPrefWidth(75);
+			destTemp.setAlignment(Pos.CENTER);
+			destWeatherPane.getChildren().add(destTemp);
+			
+			destPane.getChildren().add(destWeatherPane);
+			
+			Label arriveTime = new Label("Arrive " + trip.getArriveTime());
+			arriveTime.getStyleClass().add("triplisttime");
+			arriveTime.setAlignment(Pos.CENTER_RIGHT);
+			arriveTime.setTextAlignment(TextAlignment.RIGHT);
+			destPane.getChildren().add(arriveTime);
+			
+			infoPane.getChildren().add(destPane);
+		}
+		
+		public HBox getPane() {
+			return infoPane;
+		}
+	}
 
 	public PgTriplist() {
 		name = "triplist";
@@ -19,88 +117,38 @@ public class PgTriplist extends Page{
 	
 	@Override
 	void createContent() {
+		// Set up the scroll pane
 		scrollPane = new ScrollPane();
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setFitToWidth(true);
 		scrollPane.setPrefSize(320, 432);
 		
+		// Set up and create the content in the scroll pane
 		scrollContent = new GridPane();
 		scrollContent.setPrefWidth(320);
 		
-		WeatherAPI weather = new WeatherAPI("44418");
+		Calendar start = Calendar.getInstance();
+		start.set(2016, 3, 4, 9, 0);
+		
+		Calendar end = Calendar.getInstance();
+		end.set(0, 0, 0, 1, 0);
+		
+		Trip testTrip = new Trip("Start", "Dest", start, end, 
+				new boolean[]{false, false, false, false, false, false, false});
 		
 		Button btn1 = new Button();
-		btn1.setGraphic((new ForecastPane(weather, 0)).getPane());
+		btn1.setGraphic((new TriplistPane(testTrip)).getPane());
         btn1.setPrefSize(320, 108);
         btn1.setMaxHeight(108);
         btn1.setId("btn1");
         btn1.setOnAction(e -> {
         	System.out.println("changing to triplist");
-        	WeatherApp.changePage("triplist");
+        	WeatherApp.changePage("overview");
         });
         GridPane.setRowIndex(btn1, 0);
         GridPane.setColumnIndex(btn1, 0);
         scrollContent.getChildren().add(btn1);
-        
-        Button btn2 = new Button();
-        btn2.setGraphic((new ForecastPane(weather, 1)).getPane());
-        btn2.setPrefSize(320, 108);
-        btn2.setMaxHeight(108);
-        btn2.setId("btn2");
-        btn2.setOnAction(e -> {
-        	System.out.println("btn2");
-        });
-        GridPane.setRowIndex(btn2, 1);
-        GridPane.setColumnIndex(btn2, 0);
-        scrollContent.getChildren().add(btn2);
-        
-        Button btn3 = new Button();
-        btn3.setGraphic((new ForecastPane(weather, 2)).getPane());
-        btn3.setPrefSize(320, 108);
-        btn3.setMaxHeight(108);
-        btn3.setId("btn3");
-        btn3.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("BTN3 pressed!");
-            }
-        });
-        GridPane.setRowIndex(btn3, 2);
-        GridPane.setColumnIndex(btn3, 0);
-        scrollContent.getChildren().add(btn3);
-        
-        Button btn4 = new Button();
-        btn4.setGraphic((new ForecastPane(weather, 3)).getPane());
-        btn4.setPrefSize(320, 108);
-        btn4.setMaxHeight(108);
-        btn4.setId("btn4");
-        btn4.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("BTN4 pressed!");
-            }
-        });
-        GridPane.setRowIndex(btn4, 3);
-        GridPane.setColumnIndex(btn4, 0);
-        scrollContent.getChildren().add(btn4);
-        
-        Button btn5 = new Button();
-        btn5.setGraphic((new ForecastPane(weather, 3)).getPane());
-        btn5.setPrefSize(320, 108);
-        btn5.setMaxHeight(108);
-        btn5.setId("btn4");
-        btn5.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("BTN5 pressed!");
-            }
-        });
-        GridPane.setRowIndex(btn5, 4);
-        GridPane.setColumnIndex(btn5, 0);
-        scrollContent.getChildren().add(btn5);
         
         scrollPane.setContent(scrollContent);
         pageGrid.getChildren().add(scrollPane);

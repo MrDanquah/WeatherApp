@@ -6,6 +6,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 
 public class YWeatherConnection {
 
@@ -20,27 +23,59 @@ public class YWeatherConnection {
             url = new URL("http://query.yahooapis.com/v1/public/yql?q="+ query
                     + "&format=json");
             URLConnection connection = url.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection
-                    .getInputStream()));
+            BufferedReader in = new BufferedReader(
+            		new InputStreamReader(connection.getInputStream()));
+            String receivedJsonString = "";
             String inputLine = "";
             while ((inputLine = in.readLine()) != null) {
-                    System.out.println(inputLine);
-                }
+            	receivedJsonString += inputLine;
+                System.out.println(receivedJsonString);
+            }
+            
+            parseWeatherJSON(receivedJsonString);
         } catch (Exception e) {
             e.printStackTrace();
         }
-     
-
 	}
 	
-	private void parseWeatherJSON(String jsonString) {
+	private void parseWeatherJSON(String jsonString) throws Exception {
+		// Get the result/results from the query
+		Object results = (new JSONObject(jsonString)).getJSONObject("query").
+				getJSONObject("results").get("channel");
+		// TODO need to make sure results is not null
 		
+		/* Check if we got a single result, multiple results, or no result.
+		 * Yahoo weather has a terrible JSON structure and likes to use
+		 * different types for single vs multiple results
+		 * Single result = channel is a JSON object
+		 * Multiple results = channel is a JSON array
+		 * No results = results is the string "null" 
+		 */
+		JSONObject weatherData;
+		if(results instanceof JSONObject) {
+			// Lovely, we got a single result
+			weatherData = ((JSONObject) results);
+		} else if(results instanceof JSONArray) {
+			// How unfortunate, we got multiple results
+			// TODO need to actually let the user know
+			weatherData = ((JSONArray) results).getJSONObject(0);
+		} else {
+			// Something really bad happened
+			throw new Exception("Oops, something went wrong with the weather query.");
+		}
+		
+		JSONObject currentCond = weatherData.getJSONObject("item").getJSONObject("condition");
+		// TODO apparently sometimes the condition code is 3200. need to take care of that
+
+		String outstr = currentCond.getString("text");
+		System.out.println(outstr);
+		System.out.println(results.getClass().getName());
 	}
 	
 	public static void main(String args[]) {
 		YWeatherConnection myWeather = new YWeatherConnection();
 		
-		myWeather.searchQuery("tower hamlets");
+		myWeather.searchQuery("London, UK");
 	}
 
 }

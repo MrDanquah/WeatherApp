@@ -14,12 +14,37 @@ public class Trip {
 	private Weather destWeather;
 	
 	public Trip(String start, String dest, Calendar arrivetime, Calendar commutetime, boolean repeat[]) {
-		this.start = start;
-		this.dest = dest;
+		this.setStart(start);
+		this.setDest(dest);
 		this.arrivetime = arrivetime;
 		this.commutetime = commutetime;
-		repeat = new boolean[7];
+		this.repeat = new boolean[7];
 		System.arraycopy(repeat, 0, this.repeat, 0, repeat.length);
 		//TODO get the actual weather
+	}
+
+	public String getStart() {
+		return start;
+	}
+
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public String getDest() {
+		return dest;
+	}
+
+	public void setDest(String dest) {
+		this.dest = dest;
+	}
+	
+	public String getLeaveTime() {
+		return arrivetime.get(Calendar.HOUR) + ":" + arrivetime.get(Calendar.MINUTE);
+	}
+	
+	public String getArriveTime() {
+		return (arrivetime.get(Calendar.HOUR) + commutetime.get(Calendar.HOUR))
+				+ ":" + (arrivetime.get(Calendar.MINUTE) + commutetime.get(Calendar.MINUTE));
 	}
 }
