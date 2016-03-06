@@ -5,48 +5,19 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class YWeatherConnection {
-	
-	public class City {
-		private int woeid;
-		private String name;
-		private String country;
-		private String admin1;
-		
-		public City(int woeid, String name, String country, String admin1) {
-			this.woeid = woeid;
-			this.name = name;
-			this.country = country;
-			this.admin1 = admin1;
-		}
-		
-		public int getWOEID() {
-			return woeid;
-		}
-		
-		public String getName() {
-			return name;
-		}
-		
-		public String getCountry() {
-			return country;
-		}
-		
-		public String getAdmin1() {
-			return admin1;
-		}
-		
-		public String getFullName() {
-			return name + ", " + admin1 + ", " + country;
-		}
-	}
 	
 	private String API_KEY = "dj0yJmk9ZUVqWHRabkRxdlZLJmQ9WVdrOVNERlFibnBHTjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02ZA--";
 	
@@ -62,7 +33,6 @@ public class YWeatherConnection {
             String inputLine = "";
             while ((inputLine = in.readLine()) != null) {
             	response += inputLine;
-                System.out.println(response);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,25 +92,70 @@ public class YWeatherConnection {
 		return cities;
 	}
 	
-	public void getWeather(int woeid) {
-		String query = "select * from weather.forecast where woeid=" + woeid;
+	public List<Weather> getWeather(int woeid) {
+		List<Weather> weatherData = new ArrayList<Weather>();
+		
+		String query = "select * from weather.forecast where u='c' and woeid=" + woeid;
 		
 		String response = sendQuery(query);
 		
-		parseWeatherJSON(response);
-	}
-	
-	private void parseWeatherJSON(String jsonString) {
 		// Get the result/results from the query
-		JSONObject results = (new JSONObject(jsonString)).getJSONObject("query").
+		JSONObject results = (new JSONObject(response)).getJSONObject("query").
 				getJSONObject("results").getJSONObject("channel");
 		
+		int current;
+		int hi, lo;
+		int windDir, windSpeed;
+		int condCode;
+		String condText;
+		Calendar date;
+		String location;
+		
+		// First get the weather info for today
 		JSONObject currentCond = results.getJSONObject("item").getJSONObject("condition");
-		// TODO apparently sometimes the condition code is 3200. need to take care of that
-
-		String outstr = currentCond.getString("text");
-		System.out.println(outstr);
-		System.out.println(results.getClass().getName());
+		if(currentCond.getInt("code") == 3200) {
+			condCode = 34; // We'll just set the weather to be fair
+			condText = "";
+		} else {
+			condCode = currentCond.getInt("code");
+			condText = currentCond.getString("text");
+		}
+		current = currentCond.getInt("temp");
+		
+		JSONArray forecast = results.getJSONObject("item").getJSONArray("forecast");
+		hi = forecast.getJSONObject(0).getInt("high");
+		lo = forecast.getJSONObject(0).getInt("low");
+		
+		windDir = results.getJSONObject("wind").getInt("direction");
+		windSpeed = (int) results.getJSONObject("wind").getDouble("speed");
+		
+		date = Calendar.getInstance();
+		
+		location = results.getJSONObject("location").getString("city");
+		
+		weatherData.add(new Weather(
+				false, current, hi, lo, windDir, windSpeed, condCode, condText, date, location));
+		
+		// Get the forecast for next 3 days
+		for(int i = 1; i < 4; i++) {
+			condCode = forecast.getJSONObject(i).getInt("code");
+			condText = forecast.getJSONObject(i).getString("text");
+			
+			hi = forecast.getJSONObject(i).getInt("high");
+			lo = forecast.getJSONObject(i).getInt("low");
+			
+			SimpleDateFormat sdfmt = new SimpleDateFormat("d MMM yyyy");
+			try {
+				date.setTime(sdfmt.parse(forecast.getJSONObject(i).getString("date")));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			weatherData.add(new Weather(
+					true, current, hi, lo, windDir, windSpeed, condCode, condText, date, location));
+		}
+		
+		return weatherData;
 	}
 	
 	public static void main(String args[]) {
@@ -151,9 +166,9 @@ public class YWeatherConnection {
 			if(cities.isEmpty()) {
 				// empty
 			} else {
-				myWeather.getWeather(cities.get(0).getWOEID());
+				System.out.println(
+						myWeather.getWeather(cities.get(0).getWOEID()).get(3).getCondText());
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

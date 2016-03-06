@@ -9,12 +9,22 @@ public class Weather {
 	private int hourly[];
 	private int windDir, windSpeed;
 	private int condCode;
+	private String condText;
 	private Calendar date;
 	private String location;
 	
-	public Weather(boolean isForecast, int current, int hi, int lo, int hourly[], int windDir, int windSpeed,
-			int condCode, Calendar date, String location) {
-		
+	public Weather(boolean isForecast, int current, int hi, int lo, int windDir, int windSpeed,
+			int condCode, String condText, Calendar date, String location) {
+		this.isForecast = isForecast;
+		this.current = current;
+		this.hi = hi;
+		this.lo = lo;
+		this.windDir = windDir;
+		this.windSpeed = windSpeed;
+		this.condCode = condCode;
+		this.condText = condText;
+		this.date = date;
+		this.location = location;
 	}
 	
 	public int getCurrentTemp() {
@@ -39,5 +49,9 @@ public class Weather {
 	
 	public int getCondCode() {
 		return condCode;
+	}
+	
+	public String getCondText() {
+		return condText;
 	}
 }
