@@ -1,16 +1,20 @@
 package gui;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import api.Trip;
 import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class WeatherApp extends Application{
-	static Stage window;
+	private static Stage window;
 	private static Map<String, Page> pages = new HashMap<String, Page>();
-	static Trip trips[];
+	public static List<Trip> trips = new ArrayList<Trip>();
 	
 	public static void main(String[] args) {
         launch(args);
@@ -25,10 +29,28 @@ public class WeatherApp extends Application{
     	window.setTitle("Commuter weather app");
     	window.setResizable(false); // Not resizable
     	
+    	// Add two demo trips
+    	Calendar start = Calendar.getInstance();
+		start.set(0, 0, 0, 10, 0);
+		
+		Calendar end = Calendar.getInstance();
+		end.set(0, 0, 0, 1, 0);
+		
+		trips.add(new Trip("Brent", "Tower Hamlet", start, end, 
+				new boolean[]{false, true, true, true, true, true, false}));
+		
+		start.set(0, 0, 0, 15, 0);
+		end.set(0, 0, 0, 0, 30);
+		
+		trips.add(new Trip("Tower Hamlet", "Southwark", start, end, 
+				new boolean[]{false, true, true, true, true, true, false}));
+    	
     	Page overview = new PgOverview();
     	Page triplist = new PgTriplist();
+    	Page tripplanner = new PgTripplanner();
     	pages.put(overview.getName(), overview);
     	pages.put(triplist.getName(), triplist);
+    	pages.put(tripplanner.getName(), tripplanner);
     	
         window.setScene(overview.pageScene);
         window.show();

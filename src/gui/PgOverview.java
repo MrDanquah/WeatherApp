@@ -12,7 +12,7 @@ import api.WeatherAPI;
 
 public class PgOverview extends Page{
 	
-	public class ForecastPane {
+	private class ForecastPane {
 		public HBox infoPane;
 		private Label weatherIcon;
 		
@@ -67,6 +67,7 @@ public class PgOverview extends Page{
 	
 	public PgOverview() {
 		name = "overview";
+		displayName = "Overview";
 	}
 	
 	int weathercount = 0;
@@ -109,12 +110,8 @@ public class PgOverview extends Page{
         btn3.setPrefSize(320, 108);
         btn3.setMaxHeight(108);
         btn3.setId("btn3");
-        btn3.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("BTN3 pressed!");
-            }
+        btn3.setOnAction(e -> {
+        	WeatherApp.changePage("tripplanner");
         });
         GridPane.setRowIndex(btn3, 2);
         GridPane.setColumnIndex(btn3, 0);

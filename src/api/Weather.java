@@ -12,9 +12,10 @@ public class Weather {
 	private String condText;
 	private Calendar date;
 	private String location;
+	private int woeid;
 	
 	public Weather(boolean isForecast, int current, int hi, int lo, int windDir, int windSpeed,
-			int condCode, String condText, Calendar date, String location) {
+			int condCode, String condText, Calendar date, String location, int woeid) {
 		this.isForecast = isForecast;
 		this.current = current;
 		this.hi = hi;
@@ -25,6 +26,7 @@ public class Weather {
 		this.condText = condText;
 		this.date = date;
 		this.location = location;
+		this.woeid = woeid;
 	}
 	
 	public int getCurrentTemp() {

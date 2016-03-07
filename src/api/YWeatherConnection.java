@@ -134,7 +134,7 @@ public class YWeatherConnection {
 		location = results.getJSONObject("location").getString("city");
 		
 		weatherData.add(new Weather(
-				false, current, hi, lo, windDir, windSpeed, condCode, condText, date, location));
+				false, current, hi, lo, windDir, windSpeed, condCode, condText, date, location, woeid));
 		
 		// Get the forecast for next 3 days
 		for(int i = 1; i < 4; i++) {
@@ -152,7 +152,7 @@ public class YWeatherConnection {
 			}
 			
 			weatherData.add(new Weather(
-					true, current, hi, lo, windDir, windSpeed, condCode, condText, date, location));
+					true, current, hi, lo, windDir, windSpeed, condCode, condText, date, location, woeid));
 		}
 		
 		return weatherData;

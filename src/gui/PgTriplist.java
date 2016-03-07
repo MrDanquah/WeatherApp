@@ -3,6 +3,7 @@ package gui;
 import java.util.Calendar;
 import java.util.Date;
 
+import api.Trip;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +18,7 @@ public class PgTriplist extends Page{
 	private ScrollPane scrollPane;
 	private GridPane scrollContent;
 	
-	public class TriplistPane {
+	private class TriplistPane {
 		public HBox infoPane;
 		
 		public TriplistPane(Trip trip) {
@@ -113,6 +114,7 @@ public class PgTriplist extends Page{
 
 	public PgTriplist() {
 		name = "triplist";
+		displayName = "Trip List";
 	}
 	
 	@Override

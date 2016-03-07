@@ -7,6 +7,7 @@ public abstract class Page {
 	protected Scene pageScene;
 	protected GridPane pageGrid;
 	protected String name;
+	protected String displayName;
 	
 	public Page() {
 		pageGrid = new GridPane();
@@ -20,6 +21,10 @@ public abstract class Page {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public String getDisplayName() {
+		return displayName;
 	}
 	
 	public Scene getScene() {
