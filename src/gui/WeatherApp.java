@@ -18,7 +18,7 @@ public class WeatherApp extends Application{
 	// We use these global references/variables to allow different pages to know  
 	// what day and trip we are looking at.
 	public static int currentlyViewingDay;
-	public static Trip currentlyViewinginTrip;
+	public static Trip currentlyViewingTrip;
 	
 	public static void main(String[] args) {
         launch(args);

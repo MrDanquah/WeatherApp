@@ -104,7 +104,7 @@ public class PgTripplanner extends Page{
 			
 			infoPane.getChildren().add(repeatAndDelete);
 			infoPane.setOnMouseClicked(e -> {
-				WeatherApp.currentlyViewinginTrip = trip;
+				WeatherApp.currentlyViewingTrip = trip;
 	        	System.out.println(WeatherApp.trips.get(0).getStart());
 	        });
 		}
