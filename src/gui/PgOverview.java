@@ -67,7 +67,7 @@ public class PgOverview extends Page{
 	
 	public PgOverview() {
 		name = "overview";
-		displayName = "Overview";
+		
 	}
 	
 	int weathercount = 0;
@@ -87,7 +87,7 @@ public class PgOverview extends Page{
         });
         GridPane.setRowIndex(btn1, 0);
         GridPane.setColumnIndex(btn1, 0);
-        pageGrid.getChildren().add(btn1);
+        mainContentGrid.getChildren().add(btn1);
         
         ForecastPane forePane = new ForecastPane(weather, 1);
         
@@ -103,7 +103,7 @@ public class PgOverview extends Page{
         });
         GridPane.setRowIndex(btn2, 1);
         GridPane.setColumnIndex(btn2, 0);
-        pageGrid.getChildren().add(btn2);
+        mainContentGrid.getChildren().add(btn2);
         
         Button btn3 = new Button();
         btn3.setGraphic((new ForecastPane(weather, 2)).getPane());
@@ -115,7 +115,7 @@ public class PgOverview extends Page{
         });
         GridPane.setRowIndex(btn3, 2);
         GridPane.setColumnIndex(btn3, 0);
-        pageGrid.getChildren().add(btn3);
+        mainContentGrid.getChildren().add(btn3);
         
         Button btn4 = new Button();
         btn4.setGraphic((new ForecastPane(weather, 3)).getPane());
@@ -131,12 +131,25 @@ public class PgOverview extends Page{
         });
         GridPane.setRowIndex(btn4, 3);
         GridPane.setColumnIndex(btn4, 0);
-        pageGrid.getChildren().add(btn4);
+        mainContentGrid.getChildren().add(btn4);
 	}
 
 	@Override
 	void refreshPage() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addNavBar() {
+		lButton = new Button("Overview");
+		
+		rButton = new Button("Journey Planner");
+			rButton.setOnAction(e -> {
+	        	//System.out.println("changing to triplist");
+	        	WeatherApp.changePage("triplist");
+	        });
+		
 		
 	}
 

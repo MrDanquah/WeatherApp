@@ -147,12 +147,26 @@ public class PgTripplanner extends Page{
         scrollContent.getChildren().add(add);
 		
 		scrollPane.setContent(scrollContent);
-        pageGrid.getChildren().add(scrollPane);
+        mainContentGrid.getChildren().add(scrollPane);
 	}
 
 	@Override
 	void refreshPage() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addNavBar() {
+	lButton = new Button("Overview");
+		
+		rButton = new Button("Journey Planner");
+			rButton.setOnAction(e -> {
+	        	//System.out.println("changing to triplist");
+	        	WeatherApp.changePage("triplist");
+	        });
+		
+		
 		
 	}
 

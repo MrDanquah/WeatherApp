@@ -56,7 +56,7 @@ public class WeatherApp extends Application{
     	pages.put(triplist.getName(), triplist);
     	pages.put(tripplanner.getName(), tripplanner);
     	
-        window.setScene(overview.pageScene);
+        window.setScene(overview.getScene());
         window.show();
     }
     

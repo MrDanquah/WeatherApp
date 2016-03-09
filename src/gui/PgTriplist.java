@@ -159,12 +159,26 @@ public class PgTriplist extends Page{
         scrollContent.getChildren().add(btn1);
         
         scrollPane.setContent(scrollContent);
-        pageGrid.getChildren().add(scrollPane);
+        mainContentGrid.getChildren().add(scrollPane);
 	}
 
 	@Override
 	void refreshPage() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addNavBar() {
+	lButton = new Button("Back");
+		
+		rButton = new Button("Clothing");
+			lButton.setOnAction(e -> {
+	        	//System.out.println("changing to triplist");
+	        	WeatherApp.changePage("overview");
+	        });
+		
+		
 		
 	}
 
