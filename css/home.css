@@ -88,3 +88,9 @@
 #btn4 {
 	-fx-background-color: #f26d7d;
 }
+
+#addbtn {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 50pt;
+}

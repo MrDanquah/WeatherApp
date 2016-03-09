@@ -1,9 +1,7 @@
 package gui;
 
 import java.util.Calendar;
-import java.util.Date;
 
-import api.Trip;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,10 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
+import api.Trip;
 
 public class PgTriplist extends Page{
 	private ScrollPane scrollPane;
-	private GridPane scrollContent;
+	private VBox scrollContent;
 	
 	private class TriplistPane {
 		public HBox infoPane;
@@ -127,13 +126,22 @@ public class PgTriplist extends Page{
 		scrollPane.setPrefSize(320, 432);
 		
 		// Set up and create the content in the scroll pane
-		scrollContent = new GridPane();
+		scrollContent = new VBox();
 		scrollContent.setPrefWidth(320);
+		
+		Calendar today = Calendar.getInstance();
+		for(Trip trip : WeatherApp.trips) {
+			// Display only trips for this day
+			if(trip.getRepeat()[today.get(Calendar.DAY_OF_WEEK) - 1]) {
+				// Add to list
+			}
+		}
 		
 		Calendar start = Calendar.getInstance();
 		start.set(2016, 3, 4, 9, 0);
 		
 		Calendar end = Calendar.getInstance();
+		System.out.println(end.get(Calendar.DAY_OF_WEEK));
 		end.set(0, 0, 0, 1, 0);
 		
 		Trip testTrip = new Trip("Start", "Dest", start, end, 
@@ -148,8 +156,6 @@ public class PgTriplist extends Page{
         	System.out.println("changing to triplist");
         	WeatherApp.changePage("overview");
         });
-        GridPane.setRowIndex(btn1, 0);
-        GridPane.setColumnIndex(btn1, 0);
         scrollContent.getChildren().add(btn1);
         
         scrollPane.setContent(scrollContent);

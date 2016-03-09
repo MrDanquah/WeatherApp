@@ -1,13 +1,10 @@
 package gui;
 
-import java.util.Calendar;
-
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -17,7 +14,7 @@ import api.Trip;
 
 public class PgTripplanner extends Page{
 	private ScrollPane scrollPane;
-	private GridPane scrollContent;
+	private VBox scrollContent;
 	
 	private class TripplannerPane {
 		public VBox infoPane;
@@ -26,8 +23,16 @@ public class PgTripplanner extends Page{
 				", Sun", ", Mon", ", Tue", ", Wed", ", Thu", ", Fri", ", Sat"};
 		
 		public TripplannerPane(Trip trip) {
+			/*
+			 * Due to the delete button being embedded inside the main large
+			 * button, we can't actually use a regular button to represent the
+			 * large button. Instead, we attach an event handler to the VBox
+			 * so that it behaves like a button when clicked.
+			 */
 			infoPane = new VBox();
 			infoPane.getStyleClass().add("bordered");
+			infoPane.setId("btn1");
+			infoPane.setPrefSize(320, 108);
 			
 			// Trip start and dest names
 			HBox tripNames = new HBox();
@@ -70,7 +75,7 @@ public class PgTripplanner extends Page{
 			
 			String repeatDays = "";
 			for(int i = 0; i < 7; i++) {
-				if(WeatherApp.trips.get(0).getRepeat()[i]) {
+				if(trip.getRepeat()[i]) {
 					repeatDays += days[i];
 				}
 			}
@@ -99,7 +104,8 @@ public class PgTripplanner extends Page{
 			
 			infoPane.getChildren().add(repeatAndDelete);
 			infoPane.setOnMouseClicked(e -> {
-	        	System.out.println("clicked infopane");
+				WeatherApp.currentlyViewinginTrip = trip;
+	        	System.out.println(WeatherApp.trips.get(0).getStart());
 	        });
 		}
 		
@@ -123,17 +129,22 @@ public class PgTripplanner extends Page{
 		scrollPane.setPrefSize(320, 432);
 		
 		// Set up and create the content in the scroll pane
-		scrollContent = new GridPane();
+		scrollContent = new VBox();
 		scrollContent.setPrefWidth(320);
 		
-		Button btn1 = new Button();
-		btn1.setGraphic((new TripplannerPane(WeatherApp.trips.get(0))).getPane());
-        btn1.setPrefSize(320, 108);
-        btn1.setMaxHeight(108);
-        btn1.setId("btn1");
-        GridPane.setRowIndex(btn1, 0);
-        GridPane.setColumnIndex(btn1, 0);
-        scrollContent.getChildren().add(btn1);
+		for(Trip trip : WeatherApp.trips) {
+			scrollContent.getChildren().add(
+	        		(new TripplannerPane(trip)).getPane());
+		}
+		
+		Button add = new Button();
+		add.setId("addbtn");
+		add.setPrefSize(320, 108);
+		add.setText("+");
+        add.setOnAction(e -> {
+        	System.out.println("add");
+        });
+        scrollContent.getChildren().add(add);
 		
 		scrollPane.setContent(scrollContent);
         pageGrid.getChildren().add(scrollPane);

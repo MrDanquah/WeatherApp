@@ -15,6 +15,10 @@ public class WeatherApp extends Application{
 	private static Stage window;
 	private static Map<String, Page> pages = new HashMap<String, Page>();
 	public static List<Trip> trips = new ArrayList<Trip>();
+	// We use these global references/variables to allow different pages to know  
+	// what day and trip we are looking at.
+	public static int currentlyViewingDay;
+	public static Trip currentlyViewinginTrip;
 	
 	public static void main(String[] args) {
         launch(args);
@@ -43,7 +47,7 @@ public class WeatherApp extends Application{
 		end.set(0, 0, 0, 0, 30);
 		
 		trips.add(new Trip("Tower Hamlet", "Southwark", start, end, 
-				new boolean[]{false, true, true, true, true, true, false}));
+				new boolean[]{false, false, false, false, true, true, false}));
     	
     	Page overview = new PgOverview();
     	Page triplist = new PgTriplist();
