@@ -110,7 +110,7 @@ public class PgTripplanner extends Page{
 	
 	public PgTripplanner() {
 		name = "tripplanner";
-		displayName = "Trip Planner";
+		
 	}
 
 	@Override
@@ -142,6 +142,19 @@ public class PgTripplanner extends Page{
 	@Override
 	void refreshPage() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	void addNavBar() {
+	lButton = new Button("Overview");
+		
+		rButton = new Button("Journey Planner");
+			rButton.setOnAction(e -> {
+	        	//System.out.println("changing to triplist");
+	        	WeatherApp.changePage("triplist");
+	        });
+		
+		
 		
 	}
 

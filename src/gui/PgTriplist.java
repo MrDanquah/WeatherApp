@@ -2,7 +2,6 @@ package gui;
 
 import java.util.Calendar;
 import java.util.Date;
-
 import api.Trip;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -112,11 +111,6 @@ public class PgTriplist extends Page{
 		}
 	}
 
-	public PgTriplist() {
-		name = "triplist";
-		displayName = "Trip List";
-	}
-	
 	@Override
 	void createContent() {
 		// Set up the scroll pane
@@ -159,6 +153,20 @@ public class PgTriplist extends Page{
 	@Override
 	void refreshPage() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addNavBar() {
+	lButton = new Button("Back");
+		
+		rButton = new Button("Clothing");
+			lButton.setOnAction(e -> {
+	        	//System.out.println("changing to triplist");
+	        	WeatherApp.changePage("overview");
+	        });
+		
+		
 		
 	}
 
