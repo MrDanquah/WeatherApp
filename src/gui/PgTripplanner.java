@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -30,17 +31,15 @@ public class PgTripplanner extends Page{
 			 * so that it behaves like a button when clicked.
 			 */
 			infoPane = new VBox();
-			infoPane.getStyleClass().add("bordered");
 			infoPane.setId("btn1");
 			infoPane.setPrefSize(320, 108);
 			
 			// Trip start and dest names
 			HBox tripNames = new HBox();
-			tripNames.getStyleClass().add("bordered");
 			tripNames.setAlignment(Pos.TOP_CENTER);
 			
 			Label startName = new Label(trip.getStart());
-			startName.getStyleClass().add("locname");
+			startName.getStyleClass().add("tripplannername");
 			startName.setPrefWidth(150);
 			startName.setAlignment(Pos.CENTER_LEFT);
 			tripNames.getChildren().add(startName);
@@ -51,7 +50,7 @@ public class PgTripplanner extends Page{
 			tripNames.getChildren().add(arrow);
 			
 			Label destName = new Label(trip.getDest());
-			destName.getStyleClass().add("locname");
+			destName.getStyleClass().add("tripplannername");
 			destName.setPrefWidth(150);
 			destName.setAlignment(Pos.CENTER_RIGHT);
 			destName.setTextAlignment(TextAlignment.RIGHT);
@@ -60,6 +59,10 @@ public class PgTripplanner extends Page{
 			infoPane.getChildren().add(tripNames);
 			
 			// Arrival time
+			Region aboveTime = new Region();
+			VBox.setVgrow(aboveTime, Priority.ALWAYS);
+			infoPane.getChildren().add(aboveTime);
+			
 			Label arrivalTime = new Label(trip.getArriveTime());
 			arrivalTime.getStyleClass().add("tripplannertime");
 			arrivalTime.setPrefWidth(Double.MAX_VALUE);
@@ -67,11 +70,15 @@ public class PgTripplanner extends Page{
 			arrivalTime.setTextAlignment(TextAlignment.RIGHT);
 			infoPane.getChildren().add(arrivalTime);
 			
+			Region belowTime = new Region();
+			VBox.setVgrow(belowTime, Priority.ALWAYS);
+			infoPane.getChildren().add(belowTime);
+			
 			// Repeated days and delete button
 			HBox repeatAndDelete = new HBox();
-			repeatAndDelete.getStyleClass().add("bordered");
 			repeatAndDelete.setPrefWidth(Double.MAX_VALUE);
 			repeatAndDelete.setAlignment(Pos.BASELINE_CENTER);
+			repeatAndDelete.setPadding(new Insets(0, 5, 0, 5));
 			
 			String repeatDays = "";
 			for(int i = 0; i < 7; i++) {
