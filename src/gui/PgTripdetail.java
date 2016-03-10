@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.Calendar;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -27,6 +29,8 @@ public class PgTripdetail extends Page{
 			infoPane.setAlignment(Pos.CENTER);
 			infoPane.getStyleClass().add("bordered");
 			infoPane.setPrefHeight(216);
+			infoPane.setStyle("-fx-background-color: " + WeatherApp.
+	        		colorMap[WeatherApp.currentlyViewingDay]);
 			
 			// Special region used to help with centering
 			Region topRegion = new Region();
@@ -88,7 +92,8 @@ public class PgTripdetail extends Page{
 			windDetails.setAlignment(Pos.CENTER);
 			windDetails.setPrefWidth(100);
 			
-			Label windIcon = new Label(".");
+			Label windIcon = new Label(WeatherApp.
+					windIconMap[((weather.getWindDir() + 22)%360)/45]);
 			windIcon.getStyleClass().add("weathericon");
 			windIcon.setId("tripdetailwind");
 			windIcon.setTranslateY(-5);
@@ -131,12 +136,6 @@ public class PgTripdetail extends Page{
 		GridPane.setColumnIndex(dest.getPane(), 0);
 		GridPane.setRowIndex(dest.getPane(), 1);
 		mainContentGrid.getChildren().add(dest.getPane());
-	}
-	
-	@Override
-	void refreshPage() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override

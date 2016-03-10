@@ -41,6 +41,12 @@ public class WeatherApp extends Application{
 			"S", "W", "Y"
 	};
 	
+	// Wind icon map
+	public static final String[] windIconMap = {
+		"\u0023", "\u002e", "\u00b7", "u003f", 
+		"u00bf",  "u0022", "u0027", "u003b"
+	};
+	
 	public static void main(String[] args) {
         launch(args);
     }
@@ -89,6 +95,7 @@ public class WeatherApp extends Application{
     }
     
     public static void changePage(String name) {
+    	pages.get(name).refreshPage();
     	window.setScene(pages.get(name).getScene());
     }
     

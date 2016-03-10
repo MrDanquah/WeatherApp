@@ -32,11 +32,9 @@ public class PgTriplist extends Page{
 			
 			infoPane = new HBox();
 			infoPane.setAlignment(Pos.CENTER);
-			infoPane.getStyleClass().add("bordered");
 			
 			// Start location info
 			VBox startPane = new VBox();
-			startPane.getStyleClass().add("bordered");
 			startPane.setPrefWidth(150);
 			
 			Label startName = new Label(trip.getStart());
@@ -59,7 +57,7 @@ public class PgTriplist extends Page{
 			Label startTemp = new Label(startWeather.getCurrentTemp() + "\u2103");
 			startTemp.getStyleClass().add("triplisttemp");
 			startTemp.setPrefWidth(75);
-			startTemp.setAlignment(Pos.CENTER);
+			startTemp.setAlignment(Pos.CENTER_LEFT);
 			startWeatherPane.getChildren().add(startTemp);
 			
 			startPane.getChildren().add(startWeatherPane);
@@ -79,7 +77,6 @@ public class PgTriplist extends Page{
 			
 			// Destination location info
 			VBox destPane = new VBox();
-			destPane.getStyleClass().add("bordered");
 			destPane.setPrefWidth(150);
 			
 			Label destName = new Label(trip.getDest());
@@ -139,35 +136,26 @@ public class PgTriplist extends Page{
 		scrollContent = new VBox();
 		scrollContent.setPrefWidth(320);
 		
-		List<Trip> todayTrips = new ArrayList<Trip>();
-		
 		for(Trip trip : WeatherApp.trips) {
 			// Display only trips for this day
 			if(trip.getRepeat()[WeatherApp.currentlyViewingDay]) {
-				todayTrips.add(trip);
+				Button tripBtn = new Button();
+				tripBtn.setGraphic((new TriplistPane(trip)).getPane());
+		        tripBtn.setPrefSize(320, 108);
+		        tripBtn.setStyle("-fx-background-color: " + WeatherApp.
+		        		colorMap[WeatherApp.currentlyViewingDay]);
+		        tripBtn.setOnAction(e -> {
+		        	WeatherApp.currentlyViewingTrip = trip;
+		        	WeatherApp.changePage("tripdetail");
+		        });
+		        scrollContent.getChildren().add(tripBtn);
 			}
 		}
 		
-		Button btn1 = new Button();
-		btn1.setGraphic((new TriplistPane(todayTrips.get(0))).getPane());
-        btn1.setPrefSize(320, 108);
-        btn1.setMaxHeight(108);
-        btn1.setId("btn1");
-        btn1.setOnAction(e -> {
-        	System.out.println("changing to tripdetail");
-        	WeatherApp.changePage("tripdetail");
-        });
-        scrollContent.getChildren().add(btn1);
-        
         scrollPane.setContent(scrollContent);
         mainContentGrid.getChildren().add(scrollPane);
 	}
 
-	@Override
-	void refreshPage() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	void leftButtonAction() {

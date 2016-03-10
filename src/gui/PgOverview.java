@@ -138,7 +138,7 @@ public class PgOverview extends Page{
         btn2.setOnAction(e -> {
         	WeatherApp.currentlyViewingDayIdx = 1;
         	WeatherApp.currentlyViewingDay = 
-        			londonWeather.get(0).getDate().get(Calendar.DAY_OF_WEEK) - 1;
+        			londonWeather.get(1).getDate().get(Calendar.DAY_OF_WEEK) - 1;
         	WeatherApp.changePage("triplist");
         });
         GridPane.setRowIndex(btn2, 1);
@@ -174,12 +174,6 @@ public class PgOverview extends Page{
         GridPane.setRowIndex(btn4, 3);
         GridPane.setColumnIndex(btn4, 0);
         mainContentGrid.getChildren().add(btn4);
-	}
-
-	@Override
-	void refreshPage() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -12,6 +12,11 @@
 	-fx-opacity: 0.5;
 }
 
+.weathericon {
+    -fx-text-fill: white;
+    -fx-font-family: "artill clean fixed";
+}
+
 #darkgreytext {
     -fx-text-fill: #464646;
 }
@@ -28,9 +33,8 @@
     -fx-font-size: 16pt;
 }
 
-.weathericon {
-    -fx-text-fill: white;
-    -fx-font-family: "artill clean fixed";
+#overviewwicon {
+    -fx-font-size: 52pt;
 }
 
 .overviewtemp {
@@ -61,13 +65,17 @@
 .triplisttemp {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 16pt;
+    -fx-font-size: 22pt;
 }
 
 .triplisttime {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-size: 9pt;
+}
+
+#triplistwicon {
+    -fx-font-size: 32pt;
 }
 
 .arrow {
@@ -141,12 +149,9 @@
     -fx-border-color: white;
 }
 
-#triplistwicon {
-    -fx-font-size: 32pt;
-}
-
-#overviewwicon {
-    -fx-font-size: 52pt;
+.label {
+    -fx-border-width: 1;
+    -fx-border-color: white;
 }
 
 #addbtn {
