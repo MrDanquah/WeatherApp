@@ -108,3 +108,13 @@
     -fx-font-family: "Helvetica";
     -fx-font-size: 50pt;
 }
+#rbutton {
+	-fx-text-fill: white;
+	-fx-background-color: #000000;
+	-fx-font-family: "Helvetica";
+}
+#lbutton {
+	-fx-text-fill: white;
+	-fx-background-color: #000000;
+	-fx-font-family: "Helvetica";
+}

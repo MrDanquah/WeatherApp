@@ -13,8 +13,8 @@ public abstract class Page {
 	private VBox pageContentandNav;
 	protected GridPane mainContentGrid;
 	private String name;
-	private Button lButton;
-	private Button rButton;
+	protected Button lButton;
+	protected Button rButton;
 	protected String displayName;
 	private HBox navBar;
 
@@ -35,10 +35,13 @@ public abstract class Page {
 		// Create the nav bar
 		lButton = new Button(leftButtonText);
 		lButton.setPrefSize(160, 48);
+		//lButton.getStyleClass().add("lbutton");
 		lButton.setOnAction(e -> leftButtonAction());
 		
 		rButton = new Button(rightButtonText);
 		rButton.setPrefSize(160, 48);
+	
+		
 		rButton.setOnAction(e -> rightButtonAction());
 		
 		navBar.getChildren().addAll(lButton, rButton);
