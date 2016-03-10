@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.Random;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -23,7 +25,7 @@ public class PgTripplanner extends Page{
 		private String days[] = {
 				", Sun", ", Mon", ", Tue", ", Wed", ", Thu", ", Fri", ", Sat"};
 		
-		public TripplannerPane(Trip trip) {
+		public TripplannerPane(Trip trip, int idx) {
 			/*
 			 * Due to the delete button being embedded inside the main large
 			 * button, we can't actually use a regular button to represent the
@@ -31,8 +33,9 @@ public class PgTripplanner extends Page{
 			 * so that it behaves like a button when clicked.
 			 */
 			infoPane = new VBox();
-			infoPane.setId("btn1");
 			infoPane.setPrefSize(320, 108);
+			infoPane.setStyle("-fx-background-color: " + WeatherApp.
+	        		colorMap[idx%7]);
 			
 			// Trip start and dest names
 			HBox tripNames = new HBox();
@@ -104,7 +107,8 @@ public class PgTripplanner extends Page{
 			Button delete = new Button("D");
 			delete.getStyleClass().add("deletebtn");
 			delete.setOnAction(e -> {
-	        	System.out.println("delete");
+	        	WeatherApp.trips.remove(idx);
+	        	refreshPage();
 	        });
 			delete.setAlignment(Pos.CENTER_RIGHT);
 			repeatAndDelete.getChildren().add(delete);
@@ -112,7 +116,7 @@ public class PgTripplanner extends Page{
 			infoPane.getChildren().add(repeatAndDelete);
 			infoPane.setOnMouseClicked(e -> {
 				WeatherApp.currentlyViewingTrip = trip;
-	        	System.out.println(WeatherApp.trips.get(0).getStart());
+	        	WeatherApp.changePage("edittrip");
 	        });
 		}
 		
@@ -138,9 +142,11 @@ public class PgTripplanner extends Page{
 		scrollContent = new VBox();
 		scrollContent.setPrefWidth(320);
 		
+		int idx = 0;
 		for(Trip trip : WeatherApp.trips) {
 			scrollContent.getChildren().add(
-	        		(new TripplannerPane(trip)).getPane());
+	        		(new TripplannerPane(trip, idx)).getPane());
+			idx++;
 		}
 		
 		Button add = new Button();
@@ -148,18 +154,12 @@ public class PgTripplanner extends Page{
 		add.setPrefSize(320, 108);
 		add.setText("+");
         add.setOnAction(e -> {
-        	WeatherApp.changePage("editTrip");
+        	WeatherApp.changePage("edittrip");
         });
         scrollContent.getChildren().add(add);
 		
 		scrollPane.setContent(scrollContent);
         mainContentGrid.getChildren().add(scrollPane);
-	}
-
-	@Override
-	void refreshPage() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

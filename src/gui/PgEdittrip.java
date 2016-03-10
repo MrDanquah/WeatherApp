@@ -50,7 +50,7 @@ public class PgEdittrip extends Page {
 	}
 
 	public PgEdittrip() {
-		super("editTrip", "Add Trips", "Back", "Save");
+		super("edittrip", "Edit Trip", "Back", "Save");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -76,12 +76,6 @@ public class PgEdittrip extends Page {
 		GridPane.setColumnIndex(start.getPane(), 0);
 		GridPane.setRowIndex(start.getPane(), 0);
 		mainContentGrid.getChildren().add(start.getPane());
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	void refreshPage() {
 		// TODO Auto-generated method stub
 
 	}

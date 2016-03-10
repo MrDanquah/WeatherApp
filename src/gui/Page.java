@@ -68,5 +68,7 @@ public abstract class Page {
 
 	abstract void createContent();
 
-	abstract void refreshPage();
+	public void refreshPage() {
+		createContent();
+	};
 }

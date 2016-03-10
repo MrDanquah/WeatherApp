@@ -35,7 +35,12 @@ public class Weather {
 	}
 	
 	public int getCurrentTemp() {
-		return current;
+		// Because we can't get hourly
+		if(isForecast) {
+			return (hi+lo)/2;
+		} else {
+			return current;
+		}
 	}
 	
 	public int getHi() {
