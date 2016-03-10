@@ -35,12 +35,12 @@ public abstract class Page {
 		// Create the nav bar
 		lButton = new Button(leftButtonText);
 		lButton.setPrefSize(160, 48);
-		//lButton.getStyleClass().add("lbutton");
+		lButton.setId("navButton");
 		lButton.setOnAction(e -> leftButtonAction());
 		
 		rButton = new Button(rightButtonText);
 		rButton.setPrefSize(160, 48);
-	
+		rButton.setId("navButton");
 		
 		rButton.setOnAction(e -> rightButtonAction());
 		

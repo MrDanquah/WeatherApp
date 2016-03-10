@@ -129,13 +129,14 @@
     -fx-font-family: "Helvetica";
     -fx-font-size: 50pt;
 }
-#rbutton {
-	-fx-text-fill: white;
-	-fx-background-color: #000000;
-	-fx-font-family: "Helvetica";
+
+#textField {
+    -fx-background-color:#00bff3 -fx-control-inner-background #00bff3;
+    -fx-background-insets: 0;
+    -fx-padding: 4 4 4 4;
 }
-#lbutton {
+#navButton {
+	-fx-background-color: #333333;
 	-fx-text-fill: white;
-	-fx-background-color: #000000;
-	-fx-font-family: "Helvetica";
+	
 }

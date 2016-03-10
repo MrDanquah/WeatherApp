@@ -16,6 +16,7 @@ public class PgEdittrip extends Page {
 		EditTripPane(Trip trip) {
 			inputPane = new VBox();
 			inputPane.setAlignment(Pos.CENTER.TOP_CENTER);
+			inputPane.setSpacing(4);
 			inputPane.setPrefSize(320, 432);
 
 			Text title = new Text("Edit Journey");
@@ -23,25 +24,26 @@ public class PgEdittrip extends Page {
 			title.setTextAlignment(TextAlignment.CENTER);
 
 			TextField startingPoint = new TextField(trip.getStart() != null ? "" : trip.getStart());
-
+			startingPoint.setId("textField");
 			startingPoint.setPromptText("Starting Point");
 
 			TextField dest = new TextField(trip.getDest() != null ? "" : trip.getDest());
-
+			dest.setId("textField");
 			dest.setPromptText("Destination");
 
 			TextField arrivalTime = new TextField(trip.getArriveTime() != null ? "" : trip.getArriveTime());
-
+			arrivalTime.setId("textField");
 			arrivalTime.setPromptText("Arrival Time");
 
-			TextField commuteTime = new TextField(trip.getLeaveTime()!= null ? "" : trip.getLeaveTime());
+			TextField commuteTime = new TextField(trip.getLeaveTime() != null ? "" : trip.getLeaveTime());
 			// Need to calculate difference for commute time display
+			commuteTime.setId("textField");
 			commuteTime.setPromptText("Commute Time");
-			
-			inputPane.getChildren().addAll(title,startingPoint, dest, arrivalTime, commuteTime);
+
+			inputPane.getChildren().addAll(title, startingPoint, dest, arrivalTime, commuteTime);
 
 		}
-		
+
 		public VBox getPane() {
 			return inputPane;
 		}
@@ -70,7 +72,7 @@ public class PgEdittrip extends Page {
 	void createContent() {
 
 		EditTripPane start = new EditTripPane(WeatherApp.currentlyViewingTrip);
-		
+
 		GridPane.setColumnIndex(start.getPane(), 0);
 		GridPane.setRowIndex(start.getPane(), 0);
 		mainContentGrid.getChildren().add(start.getPane());
