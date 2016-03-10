@@ -48,13 +48,18 @@ public class WeatherApp extends Application{
 		
 		trips.add(new Trip("Tower Hamlet", "Southwark", start, end, 
 				new boolean[]{false, false, false, false, true, true, false}));
+		
+		currentlyViewingDay = 1;
+		currentlyViewingTrip = trips.get(0);
     	
     	Page overview = new PgOverview();
     	Page triplist = new PgTriplist();
     	Page tripplanner = new PgTripplanner();
+    	Page tripdetail = new PgTripdetail();
     	pages.put(overview.getName(), overview);
     	pages.put(triplist.getName(), triplist);
     	pages.put(tripplanner.getName(), tripplanner);
+    	pages.put(tripdetail.getName(), tripdetail);
     	
         window.setScene(overview.getScene());
         window.show();
@@ -62,5 +67,21 @@ public class WeatherApp extends Application{
     
     public static void changePage(String name) {
     	window.setScene(pages.get(name).getScene());
+    }
+    
+    /*
+     * day is the day of week
+     * 0 = Sun, 1 = Mon, 2 = Tue, ... , 6 = Sat
+     */
+    public static List<Trip> getTripsofDay(int day) {
+    	List<Trip> filteredTrips = new ArrayList<Trip>();
+    	
+    	for(Trip trip : trips) {
+    		if(trip.getRepeat()[day]) {
+    			filteredTrips.add(trip);
+    		}
+    	}
+    	
+    	return filteredTrips;
     }
 }

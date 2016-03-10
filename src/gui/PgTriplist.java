@@ -152,8 +152,8 @@ public class PgTriplist extends Page{
         btn1.setMaxHeight(108);
         btn1.setId("btn1");
         btn1.setOnAction(e -> {
-        	System.out.println("changing to triplist");
-        	WeatherApp.changePage("overview");
+        	System.out.println("changing to tripdetail");
+        	WeatherApp.changePage("tripdetail");
         });
         scrollContent.getChildren().add(btn1);
         
