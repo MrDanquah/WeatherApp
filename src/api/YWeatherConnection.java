@@ -9,11 +9,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import java.util.Map;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -21,26 +21,35 @@ public class YWeatherConnection {
 	
 	private String API_KEY = "dj0yJmk9ZUVqWHRabkRxdlZLJmQ9WVdrOVNERlFibnBHTjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02ZA--";
 	
+	// Ghetto cache to speed up page refresh
+	private static Map<String, String> queryResponseCache = new HashMap<String, String>();
+	
+	// Method to query the YQL server for a JSON response
 	private static String sendQuery(String query) {
-		String response = "";
-        try {
-            query = URLEncoder.encode(query, "UTF-8");
-            URL url = new URL("http://query.yahooapis.com/v1/public/yql?q="+ query
-                    + "&format=json");
-            URLConnection connection = url.openConnection();
-            BufferedReader in = new BufferedReader(
-            		new InputStreamReader(connection.getInputStream()));
-            String inputLine = "";
-            while ((inputLine = in.readLine()) != null) {
-            	response += inputLine;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+		String response = queryResponseCache.get(query);
+		if(response == null) {
+			response = "";
+			try {
+	            String outQuery = URLEncoder.encode(query, "UTF-8");
+	            URL url = new URL("http://query.yahooapis.com/v1/public/yql?q="+ outQuery
+	                    + "&format=json");
+	            URLConnection connection = url.openConnection();
+	            BufferedReader in = new BufferedReader(
+	            		new InputStreamReader(connection.getInputStream()));
+	            String inputLine = "";
+	            while ((inputLine = in.readLine()) != null) {
+	            	response += inputLine;
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+			queryResponseCache.put(query, response);
+		}
         
         return response;
 	}
 	
+	// Given a location name, return a list of cities
 	public static List<City> searchLocation(String city) throws Exception {
 		List<City> cities = new ArrayList<City>();
 		
@@ -92,6 +101,7 @@ public class YWeatherConnection {
 		return cities;
 	}
 	
+	// Get the 4 day weather for a specific location (woeid)
 	public static List<Weather> getWeather(int woeid) {
 		List<Weather> weatherData = new ArrayList<Weather>();
 		
@@ -157,21 +167,4 @@ public class YWeatherConnection {
 		
 		return weatherData;
 	}
-	
-	public static void main(String args[]) {
-		YWeatherConnection myWeather = new YWeatherConnection();
-		
-		try {
-			List<City> cities = myWeather.searchLocation("London, UK");
-			if(cities.isEmpty()) {
-				// empty
-			} else {
-				System.out.println(
-						myWeather.getWeather(cities.get(0).getWOEID()).get(3).getCondText());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 }
