@@ -12,16 +12,20 @@
 	-fx-opacity: 0.5;
 }
 
+#darkgreytext {
+    -fx-text-fill: #464646;
+}
+
 .overviewdate {
-    -fx-text-fill: white;
+    -fx-text-fill: #dcdcdc;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 10pt;
+    -fx-font-size: 12pt;
 }
 
 .overviewday {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 10pt;
+    -fx-font-size: 16pt;
 }
 
 .weathericon {
@@ -29,11 +33,22 @@
     -fx-font-family: "artill clean fixed";
 }
 
-.temps {
-    -fx-text-fill: gray;
+.overviewtemp {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 32pt;
+}
+
+.overviewhilo {
+    -fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-size: 24pt;
-    -fx-alignment: center-right;
+}
+
+.overviewtext {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 10pt;
 }
 
 .locname {

@@ -6,12 +6,14 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import api.Weather;
 import api.YWeatherConnection;
 
@@ -40,13 +42,14 @@ public class PgOverview extends Page{
 			
 			// Day and date
 			VBox dayAndDate = new VBox();
-			dayAndDate.setAlignment(Pos.CENTER);
+			dayAndDate.setAlignment(Pos.CENTER_LEFT);
+			dayAndDate.setPadding(new Insets(0, 0, 0, 10));
 			dayAndDate.setPrefWidth(110);
 			
 			SimpleDateFormat sdfmt = new SimpleDateFormat("EEE");
 			Calendar date = weather.getDate();
 
-			String dayText = weather.getIsForecast() ? "TODAY" : sdfmt.format(date.getTime());
+			String dayText = weather.getIsForecast() ? sdfmt.format(date.getTime()) : "TODAY";
 			Label day = new Label(dayText.toUpperCase());
 			day.getStyleClass().add("overviewday");
 			day.setAlignment(Pos.CENTER_LEFT);
@@ -64,15 +67,42 @@ public class PgOverview extends Page{
 			weatherIcon.getStyleClass().add("weathericon");
 			weatherIcon.setId("overviewwicon");
 			weatherIcon.setTranslateY(-5);
+			weatherIcon.setTranslateX(5);
 			weatherIcon.setPrefWidth(100);
 			weatherIcon.setAlignment(Pos.CENTER);
 			infoPane.getChildren().add(weatherIcon);
 			
-			Label temps = new Label(weather.getLo() + " " + weather.getHi());
-			temps.getStyleClass().add("temps");
-			temps.setPrefWidth(110);
-			temps.setAlignment(Pos.CENTER);
-			infoPane.getChildren().add(temps);
+			VBox tempAndText = new VBox();
+			tempAndText.setAlignment(Pos.CENTER);
+			tempAndText.setPrefWidth(110);
+			
+			if(weather.getIsForecast()) {
+				HBox hilo = new HBox();
+				hilo.setAlignment(Pos.CENTER);
+				
+				Label lo = new Label(weather.getLo() + "°");
+				lo.getStyleClass().add("overviewhilo");
+				lo.setId("darkgreytext");
+				hilo.getChildren().add(lo);
+				
+				Label hi = new Label(weather.getHi() + "°");
+				hi.getStyleClass().add("overviewhilo");
+				hilo.getChildren().add(hi);
+				
+				tempAndText.getChildren().add(hilo);
+			} else {
+				Label temp = new Label(weather.getCurrentTemp() + "\u2103");
+				temp.getStyleClass().add("overviewtemp");
+				
+				tempAndText.getChildren().add(temp);
+			}
+			
+			Label condText = new Label(weather.getCondText());
+			condText.getStyleClass().add("overviewtext");
+			condText.setAlignment(Pos.CENTER);
+			tempAndText.getChildren().add(condText);
+
+			infoPane.getChildren().add(tempAndText);
 			
 		}
 		

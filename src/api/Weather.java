@@ -25,7 +25,7 @@ public class Weather {
 		this.windSpeed = windSpeed;
 		this.condCode = condCode;
 		this.condText = condText;
-		this.date = date;
+		this.date = (Calendar) date.clone();
 		this.location = location;
 		this.woeid = woeid;
 	}
