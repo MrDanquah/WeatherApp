@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import api.Trip;
 
 public class PgTripdetail extends Page{
@@ -48,12 +49,11 @@ public class PgTripdetail extends Page{
 			
 			Label lo = new Label("1");
 			lo.getStyleClass().add("tripdetailhilo");
-			lo.setAlignment(Pos.CENTER);
+			lo.setTextFill(Color.web("#464646"));
 			hilo.getChildren().add(lo);
 			
 			Label hi = new Label("2");
 			hi.getStyleClass().add("tripdetailhilo");
-			hi.setAlignment(Pos.CENTER);
 			hilo.getChildren().add(hi);
 			
 			temps.getChildren().add(hilo);
@@ -75,12 +75,10 @@ public class PgTripdetail extends Page{
 			windIcon.getStyleClass().add("weathericon");
 			windIcon.setId("tripdetailwicon");
 			windIcon.setTranslateY(-5);
-			windIcon.setAlignment(Pos.CENTER);
 			windDetails.getChildren().add(windIcon);
 			
 			Label windSpeed = new Label("X mph");
 			windSpeed.getStyleClass().add("tripdetailwindspeed");
-			windSpeed.setAlignment(Pos.CENTER);
 			windDetails.getChildren().add(windSpeed);
 			
 			weatherDetails.getChildren().add(windDetails);

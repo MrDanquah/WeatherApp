@@ -21,7 +21,7 @@ public class YWeatherConnection {
 	
 	private String API_KEY = "dj0yJmk9ZUVqWHRabkRxdlZLJmQ9WVdrOVNERlFibnBHTjJzbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD02ZA--";
 	
-	private String sendQuery(String query) {
+	private static String sendQuery(String query) {
 		String response = "";
         try {
             query = URLEncoder.encode(query, "UTF-8");
@@ -41,7 +41,7 @@ public class YWeatherConnection {
         return response;
 	}
 	
-	public List<City> searchLocation(String city) throws Exception {
+	public static List<City> searchLocation(String city) throws Exception {
 		List<City> cities = new ArrayList<City>();
 		
 		String query = "select woeid, name, country, admin1 from geo.places where text='" 
@@ -92,7 +92,7 @@ public class YWeatherConnection {
 		return cities;
 	}
 	
-	public List<Weather> getWeather(int woeid) {
+	public static List<Weather> getWeather(int woeid) {
 		List<Weather> weatherData = new ArrayList<Weather>();
 		
 		String query = "select * from weather.forecast where u='c' and woeid=" + woeid;
