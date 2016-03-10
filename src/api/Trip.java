@@ -12,9 +12,12 @@ public class Trip {
 	private Calendar commutetime; // but we will only be using the time fields
 	private boolean repeat[]; // [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
 	
-	public Trip(String start, String dest, Calendar arrivetime, Calendar commutetime, boolean repeat[]) {
-		this.setStart(start);
-		this.setDest(dest);
+	public Trip(String start, int startWoeid, String dest, int destWoeid, 
+			Calendar arrivetime, Calendar commutetime, boolean repeat[]) {
+		this.start = start;
+		this.startWoeid = startWoeid;
+		this.dest = dest;
+		this.destWoeid = destWoeid;
 		this.arrivetime = (Calendar) arrivetime.clone();
 		this.commutetime = (Calendar) commutetime.clone();
 		this.repeat = new boolean[7];
@@ -25,16 +28,8 @@ public class Trip {
 		return start;
 	}
 
-	public void setStart(String start) {
-		this.start = start;
-	}
-
 	public String getDest() {
 		return dest;
-	}
-
-	public void setDest(String dest) {
-		this.dest = dest;
 	}
 	
 	public String getLeaveTime() {
@@ -52,5 +47,13 @@ public class Trip {
 	
 	public boolean[] getRepeat() {
 		return repeat;
+	}
+	
+	public int getStartWoeid() {
+		return startWoeid;
+	}
+	
+	public int getDestWoeid() {
+		return destWoeid;
 	}
 }

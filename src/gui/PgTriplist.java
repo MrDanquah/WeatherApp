@@ -1,17 +1,20 @@
 package gui;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import api.Trip;
+import api.Weather;
+import api.YWeatherConnection;
 
 public class PgTriplist extends Page{
 	private ScrollPane scrollPane;
@@ -21,6 +24,12 @@ public class PgTriplist extends Page{
 		public HBox infoPane;
 		
 		public TriplistPane(Trip trip) {
+			// First get the weather for this trip on the day we are looking at
+			Weather startWeather = YWeatherConnection.
+					getWeather(trip.getStartWoeid()).get(WeatherApp.currentlyViewingDayIdx);
+			Weather destWeather = YWeatherConnection.
+					getWeather(trip.getDestWoeid()).get(WeatherApp.currentlyViewingDayIdx);
+			
 			infoPane = new HBox();
 			infoPane.setAlignment(Pos.CENTER);
 			infoPane.getStyleClass().add("bordered");
@@ -31,14 +40,15 @@ public class PgTriplist extends Page{
 			startPane.setPrefWidth(150);
 			
 			Label startName = new Label(trip.getStart());
-			startName.getStyleClass().add("locname");
+			startName.getStyleClass().add("triplistname");
 			startName.setAlignment(Pos.CENTER_LEFT);
 			startPane.getChildren().add(startName);
 			
 			HBox startWeatherPane = new HBox();
 			startWeatherPane.setAlignment(Pos.CENTER);
 			
-			Label startWeatherIcon = new Label("1");
+			Label startWeatherIcon = new Label(
+					WeatherApp.weatherIconMap[startWeather.getCondCode()]);
 			startWeatherIcon.getStyleClass().add("weathericon");
 			startWeatherIcon.setId("triplistwicon");
 			startWeatherIcon.setPrefWidth(75);
@@ -46,7 +56,7 @@ public class PgTriplist extends Page{
 			startWeatherIcon.setAlignment(Pos.CENTER);
 			startWeatherPane.getChildren().add(startWeatherIcon);
 			
-			Label startTemp = new Label("1");
+			Label startTemp = new Label(startWeather.getCurrentTemp() + "\u2103");
 			startTemp.getStyleClass().add("triplisttemp");
 			startTemp.setPrefWidth(75);
 			startTemp.setAlignment(Pos.CENTER);
@@ -73,7 +83,7 @@ public class PgTriplist extends Page{
 			destPane.setPrefWidth(150);
 			
 			Label destName = new Label(trip.getDest());
-			destName.getStyleClass().add("locname");
+			destName.getStyleClass().add("triplistname");
 			destName.setAlignment(Pos.CENTER_RIGHT);
 			destName.setTextAlignment(TextAlignment.RIGHT);
 			destPane.getChildren().add(destName);
@@ -81,7 +91,8 @@ public class PgTriplist extends Page{
 			HBox destWeatherPane = new HBox();
 			destWeatherPane.setAlignment(Pos.CENTER);
 			
-			Label destWeatherIcon = new Label("1");
+			Label destWeatherIcon = new Label(
+					WeatherApp.weatherIconMap[destWeather.getCondCode()]);
 			destWeatherIcon.getStyleClass().add("weathericon");
 			destWeatherIcon.setId("triplistwicon");
 			destWeatherIcon.setPrefWidth(75);
@@ -89,7 +100,7 @@ public class PgTriplist extends Page{
 			destWeatherIcon.setAlignment(Pos.CENTER);
 			destWeatherPane.getChildren().add(destWeatherIcon);
 			
-			Label destTemp = new Label("1");
+			Label destTemp = new Label(destWeather.getCurrentTemp() + "\u2103");
 			destTemp.getStyleClass().add("triplisttemp");
 			destTemp.setPrefWidth(75);
 			destTemp.setAlignment(Pos.CENTER);
@@ -128,26 +139,17 @@ public class PgTriplist extends Page{
 		scrollContent = new VBox();
 		scrollContent.setPrefWidth(320);
 		
-		Calendar today = Calendar.getInstance();
+		List<Trip> todayTrips = new ArrayList<Trip>();
+		
 		for(Trip trip : WeatherApp.trips) {
 			// Display only trips for this day
-			if(trip.getRepeat()[today.get(Calendar.DAY_OF_WEEK) - 1]) {
-				// Add to list
+			if(trip.getRepeat()[WeatherApp.currentlyViewingDay]) {
+				todayTrips.add(trip);
 			}
 		}
 		
-		Calendar start = Calendar.getInstance();
-		start.set(2016, 3, 4, 9, 0);
-		
-		Calendar end = Calendar.getInstance();
-		System.out.println(end.get(Calendar.DAY_OF_WEEK));
-		end.set(0, 0, 0, 1, 0);
-		
-		Trip testTrip = new Trip("Start", "Dest", start, end, 
-				new boolean[]{false, false, false, false, false, false, false});
-		
 		Button btn1 = new Button();
-		btn1.setGraphic((new TriplistPane(testTrip)).getPane());
+		btn1.setGraphic((new TriplistPane(todayTrips.get(0))).getPane());
         btn1.setPrefSize(320, 108);
         btn1.setMaxHeight(108);
         btn1.setId("btn1");

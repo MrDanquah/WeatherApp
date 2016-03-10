@@ -10,6 +10,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,19 +24,6 @@ public class PgOverview extends Page{
 	private class ForecastPane {
 		public HBox infoPane;
 		private Label weatherIcon;
-		
-		private String[] weatherIconMap = {
-				":", "O", "O", "Q", "Q", 
-				"W", "U", "I", "M", "M",
-				"U", "U", "U", "I", "I",
-				"I", "I", "W", "W", "…",
-				"Z", "Z", "…", ",", ",",
-				"“", "3", "3", "3", "a",
-				"A", "6", "1", "6", "2",
-				"W", "‘", "Y", "Y", "Y",
-				"G", "I", "W", "I", "A",
-				"S", "W", "Y"
-		};
 		
 		public ForecastPane(Weather weather) {
 			infoPane = new HBox();
@@ -63,7 +52,7 @@ public class PgOverview extends Page{
 			
 			infoPane.getChildren().add(dayAndDate);
 			
-			weatherIcon = new Label(weatherIconMap[weather.getCondCode()]);
+			weatherIcon = new Label(WeatherApp.weatherIconMap[weather.getCondCode()]);
 			weatherIcon.getStyleClass().add("weathericon");
 			weatherIcon.setId("overviewwicon");
 			weatherIcon.setTranslateY(-5);
@@ -111,7 +100,7 @@ public class PgOverview extends Page{
 		}
 		
 		public void changeWeatherIcon(int weather) {
-			weatherIcon.setText(weatherIconMap[weather]);
+			weatherIcon.setText(WeatherApp.weatherIconMap[weather]);
 		}
 	}
 	
@@ -129,27 +118,28 @@ public class PgOverview extends Page{
 		Button btn1 = new Button();
 		btn1.setGraphic((new ForecastPane(londonWeather.get(0))).getPane());
         btn1.setPrefSize(320, 108);
-        btn1.setMaxHeight(108);
-        btn1.setId("btn1");
+        btn1.setStyle("-fx-background-color: " + WeatherApp.
+        		colorMap[londonWeather.get(0).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn1.setOnAction(e -> {
-        	System.out.println("changing to triplist");
+        	WeatherApp.currentlyViewingDayIdx = 0;
+        	WeatherApp.currentlyViewingDay = 
+        			londonWeather.get(0).getDate().get(Calendar.DAY_OF_WEEK) - 1;
         	WeatherApp.changePage("triplist");
         });
         GridPane.setRowIndex(btn1, 0);
         GridPane.setColumnIndex(btn1, 0);
         mainContentGrid.getChildren().add(btn1);
         
-        ForecastPane forePane = new ForecastPane(londonWeather.get(1));
-        
         Button btn2 = new Button();
-        btn2.setGraphic(forePane.getPane());
+        btn2.setGraphic((new ForecastPane(londonWeather.get(1))).getPane());
         btn2.setPrefSize(320, 108);
-        btn2.setMaxHeight(108);
-        btn2.setId("btn2");
+        btn2.setStyle("-fx-background-color: " + WeatherApp.
+        		colorMap[londonWeather.get(1).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn2.setOnAction(e -> {
-        	weathercount++;
-        	System.out.println(weathercount);
-        	forePane.changeWeatherIcon(weathercount);
+        	WeatherApp.currentlyViewingDayIdx = 1;
+        	WeatherApp.currentlyViewingDay = 
+        			londonWeather.get(0).getDate().get(Calendar.DAY_OF_WEEK) - 1;
+        	WeatherApp.changePage("triplist");
         });
         GridPane.setRowIndex(btn2, 1);
         GridPane.setColumnIndex(btn2, 0);
@@ -158,10 +148,13 @@ public class PgOverview extends Page{
         Button btn3 = new Button();
         btn3.setGraphic((new ForecastPane(londonWeather.get(2))).getPane());
         btn3.setPrefSize(320, 108);
-        btn3.setMaxHeight(108);
-        btn3.setId("btn3");
+        btn3.setStyle("-fx-background-color: " + WeatherApp.
+        		colorMap[londonWeather.get(2).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn3.setOnAction(e -> {
-        	WeatherApp.changePage("tripplanner");
+        	WeatherApp.currentlyViewingDayIdx = 2;
+        	WeatherApp.currentlyViewingDay = 
+        			londonWeather.get(2).getDate().get(Calendar.DAY_OF_WEEK) - 1;
+        	WeatherApp.changePage("triplist");
         });
         GridPane.setRowIndex(btn3, 2);
         GridPane.setColumnIndex(btn3, 0);
@@ -170,14 +163,13 @@ public class PgOverview extends Page{
         Button btn4 = new Button();
         btn4.setGraphic((new ForecastPane(londonWeather.get(3))).getPane());
         btn4.setPrefSize(320, 108);
-        btn4.setMaxHeight(108);
-        btn4.setId("btn4");
-        btn4.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("BTN4 pressed!");
-            }
+        btn4.setStyle("-fx-background-color: " + WeatherApp.
+        		colorMap[londonWeather.get(3).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
+        btn4.setOnAction(e -> {
+        	WeatherApp.currentlyViewingDayIdx = 3;
+        	WeatherApp.currentlyViewingDay = 
+        			londonWeather.get(3).getDate().get(Calendar.DAY_OF_WEEK) - 1;
+        	WeatherApp.changePage("triplist");
         });
         GridPane.setRowIndex(btn4, 3);
         GridPane.setColumnIndex(btn4, 0);

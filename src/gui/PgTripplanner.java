@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.Random;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -31,8 +33,10 @@ public class PgTripplanner extends Page{
 			 * so that it behaves like a button when clicked.
 			 */
 			infoPane = new VBox();
-			infoPane.setId("btn1");
 			infoPane.setPrefSize(320, 108);
+			Random rand = new Random();
+			infoPane.setStyle("-fx-background-color: " + WeatherApp.
+	        		colorMap[rand.nextInt(7)]);
 			
 			// Trip start and dest names
 			HBox tripNames = new HBox();

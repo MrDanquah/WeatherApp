@@ -51,7 +51,7 @@
     -fx-font-size: 10pt;
 }
 
-.locname {
+.triplistname {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-weight: bold;
@@ -61,7 +61,7 @@
 .triplisttemp {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 12pt;
+    -fx-font-size: 16pt;
 }
 
 .triplisttime {
@@ -95,33 +95,58 @@
     -fx-font-size: 12pt;
 }
 
+.tripdetailname {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: 500;
+    -fx-font-size: 18pt;
+}
+
+.tripdetailtime {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14pt;
+}
+
+.tripdetailexacttemp {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: 500;
+    -fx-font-size: 32pt;
+}
+
+.tripdetailhilo {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14pt;
+}
+
+#tripdetailwicon {
+    -fx-font-size: 50pt;
+}
+
+#tripdetailwind {
+    -fx-text-fill: white;
+    -fx-font-size: 32pt;
+}
+
+.tripdetailwindspeed {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12pt;
+}
+
 .bordered {
     -fx-border-width: 1;
     -fx-border-color: white;
 }
 
 #triplistwicon {
-    -fx-font-size: 30pt;
+    -fx-font-size: 32pt;
 }
 
 #overviewwicon {
     -fx-font-size: 52pt;
-}
-
-#btn1 {
-	-fx-background-color: #00bff3;
-}
-
-#btn2 {
-	-fx-background-color: #fbaf5d;
-}
-
-#btn3 {
-	-fx-background-color: #3cb878;
-}
-
-#btn4 {
-	-fx-background-color: #f26d7d;
 }
 
 #addbtn {
