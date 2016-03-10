@@ -12,34 +12,38 @@ public abstract class Page {
 	private Scene pageScene;
 	private VBox pageContentandNav;
 	protected GridPane mainContentGrid;
-	protected String name;
-	protected Button lButton;
-	protected Button rButton;
+	private String name;
+	private Button lButton;
+	private Button rButton;
 	protected String displayName;
 	private HBox navBar;
 
-	public Page() {
+	public Page(String name, String displayName, String leftButtonText, String rightButtonText) {
+		this.name = name;
+		this.displayName = displayName;
+		
+		// Set up the grids and layout managers
 		pageContentandNav = new VBox();
 		mainContentGrid = new GridPane();
 		mainContentGrid.setPrefSize(320, 432);
 		navBar = new HBox();
 		navBar.setPrefSize(320, 48);
-
-		DropShadow shadow = new DropShadow();
-
+		
+		// Create the main content
 		createContent();
 		
-		addNavBar();
-		rButton.setPrefSize(160, 48);
+		// Create the nav bar
+		lButton = new Button(leftButtonText);
 		lButton.setPrefSize(160, 48);
+		lButton.setOnAction(e -> leftButtonAction());
 		
-		rButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> rButton.setEffect(shadow));
-		rButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> rButton.setEffect(null));
-
-		lButton.addEventHandler(MouseEvent.MOUSE_ENTERED, e -> lButton.setEffect(shadow));
-		lButton.addEventHandler(MouseEvent.MOUSE_EXITED, e -> lButton.setEffect(null));
+		rButton = new Button(rightButtonText);
+		rButton.setPrefSize(160, 48);
+		rButton.setOnAction(e -> rightButtonAction());
 		
 		navBar.getChildren().addAll(lButton, rButton);
+		
+		// Add main content and navbar to the scene and generate the scene
 		pageContentandNav.getChildren().add(mainContentGrid);
 		pageContentandNav.getChildren().add(navBar);
 		
@@ -54,8 +58,10 @@ public abstract class Page {
 	public Scene getScene() {
 		return pageScene;
 	}
-
-	abstract void addNavBar();
+	
+	abstract void leftButtonAction();
+	
+	abstract void rightButtonAction();
 
 	abstract void createContent();
 

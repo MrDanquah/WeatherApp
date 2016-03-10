@@ -66,8 +66,7 @@ public class PgOverview extends Page{
 	}
 	
 	public PgOverview() {
-		name = "overview";
-		
+		super("overview", "Overview", "Overview", "Trip Planner");
 	}
 	
 	int weathercount = 0;
@@ -141,16 +140,12 @@ public class PgOverview extends Page{
 	}
 
 	@Override
-	void addNavBar() {
-		lButton = new Button("Overview");
-		
-		rButton = new Button("Journey Planner");
-			rButton.setOnAction(e -> {
-	        	//System.out.println("changing to triplist");
-	        	WeatherApp.changePage("triplist");
-	        });
-		
-		
+	void leftButtonAction() {
+		// Nothing to do
 	}
 
+	@Override
+	void rightButtonAction() {
+		WeatherApp.changePage("tripplanner");
+	}
 }

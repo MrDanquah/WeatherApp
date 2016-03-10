@@ -115,8 +115,7 @@ public class PgTripplanner extends Page{
 	}
 	
 	public PgTripplanner() {
-		name = "tripplanner";
-		displayName = "Trip Planner";
+		super("tripplanner", "Trip Planner", "Overview", "Trip Planner");
 	}
 
 	@Override
@@ -157,17 +156,13 @@ public class PgTripplanner extends Page{
 	}
 
 	@Override
-	void addNavBar() {
-	lButton = new Button("Overview");
-		
-		rButton = new Button("Journey Planner");
-			rButton.setOnAction(e -> {
-	        	//System.out.println("changing to triplist");
-	        	WeatherApp.changePage("triplist");
-	        });
-		
-		
-		
+	void leftButtonAction() {
+		WeatherApp.changePage("overview");
+	}
+
+	@Override
+	void rightButtonAction() {
+		// Do nothing
 	}
 
 }

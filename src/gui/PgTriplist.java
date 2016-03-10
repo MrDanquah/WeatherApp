@@ -112,8 +112,7 @@ public class PgTriplist extends Page{
 	}
 
 	public PgTriplist() {
-		name = "triplist";
-		displayName = "Trip List";
+		super("triplist", "Trip List", "Back", "Clothing Suggestion");
 	}
 	
 	@Override
@@ -169,17 +168,13 @@ public class PgTriplist extends Page{
 	}
 
 	@Override
-	void addNavBar() {
-	lButton = new Button("Back");
-		
-		rButton = new Button("Clothing");
-			lButton.setOnAction(e -> {
-	        	//System.out.println("changing to triplist");
-	        	WeatherApp.changePage("overview");
-	        });
-		
-		
-		
+	void leftButtonAction() {
+		WeatherApp.changePage("overview");
+	}
+
+	@Override
+	void rightButtonAction() {
+		WeatherApp.changePage("clothsuggest");
 	}
 
 }
