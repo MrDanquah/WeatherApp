@@ -1,6 +1,7 @@
 package api;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Weather {
 	private boolean isForecast; // Determines whether [current] is valid
@@ -29,6 +30,10 @@ public class Weather {
 		this.woeid = woeid;
 	}
 	
+	public boolean getIsForecast() {
+		return isForecast;
+	}
+	
 	public int getCurrentTemp() {
 		return current;
 	}
@@ -55,5 +60,9 @@ public class Weather {
 	
 	public String getCondText() {
 		return condText;
+	}
+	
+	public Calendar getDate() {
+		return (Calendar) date.clone();
 	}
 }

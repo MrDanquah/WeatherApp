@@ -12,7 +12,13 @@
 	-fx-opacity: 0.5;
 }
 
-.date {
+.overviewdate {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 10pt;
+}
+
+.overviewday {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-size: 10pt;

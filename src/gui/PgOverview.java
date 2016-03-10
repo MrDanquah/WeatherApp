@@ -1,5 +1,9 @@
 package gui;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -7,7 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import api.WeatherAPI;
+import javafx.scene.layout.VBox;
+import api.Weather;
+import api.YWeatherConnection;
 
 public class PgOverview extends Page{
 	
@@ -28,17 +34,33 @@ public class PgOverview extends Page{
 				"S", "W", "Y"
 		};
 		
-		public ForecastPane(WeatherAPI weather, int daysAhead) {
+		public ForecastPane(Weather weather) {
 			infoPane = new HBox();
 			infoPane.setAlignment(Pos.CENTER);
 			
-			Label date = new Label(weather.weatherForecastList.get(daysAhead).dateTemp);
-			date.getStyleClass().add("date");
-			date.setPrefWidth(110);
-			date.setAlignment(Pos.CENTER_LEFT);
-			infoPane.getChildren().add(date);
+			// Day and date
+			VBox dayAndDate = new VBox();
+			dayAndDate.setAlignment(Pos.CENTER);
+			dayAndDate.setPrefWidth(110);
 			
-			weatherIcon = new Label("1");
+			SimpleDateFormat sdfmt = new SimpleDateFormat("EEE");
+			Calendar date = weather.getDate();
+
+			String dayText = weather.getIsForecast() ? "TODAY" : sdfmt.format(date.getTime());
+			Label day = new Label(dayText.toUpperCase());
+			day.getStyleClass().add("overviewday");
+			day.setAlignment(Pos.CENTER_LEFT);
+			dayAndDate.getChildren().add(day);
+			
+			sdfmt = new SimpleDateFormat("MMM d");
+			Label monthAndDate = new Label(sdfmt.format(date.getTime()).toUpperCase());
+			monthAndDate.getStyleClass().add("overviewdate");
+			monthAndDate.setAlignment(Pos.CENTER_LEFT);
+			dayAndDate.getChildren().add(monthAndDate);
+			
+			infoPane.getChildren().add(dayAndDate);
+			
+			weatherIcon = new Label(weatherIconMap[weather.getCondCode()]);
 			weatherIcon.getStyleClass().add("weathericon");
 			weatherIcon.setId("overviewwicon");
 			weatherIcon.setTranslateY(-5);
@@ -46,8 +68,7 @@ public class PgOverview extends Page{
 			weatherIcon.setAlignment(Pos.CENTER);
 			infoPane.getChildren().add(weatherIcon);
 			
-			Label temps = new Label(weather.weatherForecastList.get(daysAhead).lowTemp + " " + 
-					weather.weatherForecastList.get(daysAhead).highTemp);
+			Label temps = new Label(weather.getLo() + " " + weather.getHi());
 			temps.getStyleClass().add("temps");
 			temps.setPrefWidth(110);
 			temps.setAlignment(Pos.CENTER);
@@ -72,10 +93,11 @@ public class PgOverview extends Page{
 	
 	@Override
 	void createContent() {
-		WeatherAPI weather = new WeatherAPI("44418");
+		// Get the weather for London
+		List<Weather> londonWeather = YWeatherConnection.getWeather(44418);
 		
 		Button btn1 = new Button();
-		btn1.setGraphic((new ForecastPane(weather, 0)).getPane());
+		btn1.setGraphic((new ForecastPane(londonWeather.get(0))).getPane());
         btn1.setPrefSize(320, 108);
         btn1.setMaxHeight(108);
         btn1.setId("btn1");
@@ -87,7 +109,7 @@ public class PgOverview extends Page{
         GridPane.setColumnIndex(btn1, 0);
         mainContentGrid.getChildren().add(btn1);
         
-        ForecastPane forePane = new ForecastPane(weather, 1);
+        ForecastPane forePane = new ForecastPane(londonWeather.get(1));
         
         Button btn2 = new Button();
         btn2.setGraphic(forePane.getPane());
@@ -104,7 +126,7 @@ public class PgOverview extends Page{
         mainContentGrid.getChildren().add(btn2);
         
         Button btn3 = new Button();
-        btn3.setGraphic((new ForecastPane(weather, 2)).getPane());
+        btn3.setGraphic((new ForecastPane(londonWeather.get(2))).getPane());
         btn3.setPrefSize(320, 108);
         btn3.setMaxHeight(108);
         btn3.setId("btn3");
@@ -116,7 +138,7 @@ public class PgOverview extends Page{
         mainContentGrid.getChildren().add(btn3);
         
         Button btn4 = new Button();
-        btn4.setGraphic((new ForecastPane(weather, 3)).getPane());
+        btn4.setGraphic((new ForecastPane(londonWeather.get(3))).getPane());
         btn4.setPrefSize(320, 108);
         btn4.setMaxHeight(108);
         btn4.setId("btn4");
