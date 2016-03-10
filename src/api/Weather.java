@@ -1,7 +1,6 @@
 package api;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class Weather {
 	private boolean isForecast; // Determines whether [current] is valid

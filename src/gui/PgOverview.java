@@ -4,18 +4,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import api.Weather;
 import api.YWeatherConnection;
 
@@ -97,10 +92,6 @@ public class PgOverview extends Page{
 		
 		public HBox getPane() {
 			return infoPane;
-		}
-		
-		public void changeWeatherIcon(int weather) {
-			weatherIcon.setText(WeatherApp.weatherIconMap[weather]);
 		}
 	}
 	
