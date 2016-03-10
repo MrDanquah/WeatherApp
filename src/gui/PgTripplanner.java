@@ -152,7 +152,7 @@ public class PgTripplanner extends Page{
 		add.setPrefSize(320, 108);
 		add.setText("+");
         add.setOnAction(e -> {
-        	System.out.println("add");
+        	WeatherApp.changePage("editTrip");
         });
         scrollContent.getChildren().add(add);
 		

@@ -77,10 +77,12 @@ public class WeatherApp extends Application{
     	Page triplist = new PgTriplist();
     	Page tripplanner = new PgTripplanner();
     	Page tripdetail = new PgTripdetail();
+    	Page editTrip = new PgEdittrip();
     	pages.put(overview.getName(), overview);
     	pages.put(triplist.getName(), triplist);
     	pages.put(tripplanner.getName(), tripplanner);
     	pages.put(tripdetail.getName(), tripdetail);
+    	pages.put(editTrip.getName(), editTrip);
     	
         window.setScene(overview.getScene());
         window.show();

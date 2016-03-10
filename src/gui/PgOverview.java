@@ -184,7 +184,7 @@ public class PgOverview extends Page{
 
 	@Override
 	void leftButtonAction() {
-		// Nothing to do
+		
 	}
 
 	@Override
