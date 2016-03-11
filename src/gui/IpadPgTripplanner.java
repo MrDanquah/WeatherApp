@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -102,14 +103,18 @@ public class IpadPgTripplanner extends IpadPage{
 			HBox.setHgrow(region, Priority.ALWAYS);
 			repeatAndDelete.getChildren().add(region);
 			
-			Button delete = new Button("D");
-			delete.getStyleClass().add("deletebtn");
-			delete.setOnAction(e -> {
+			ImageView delete = new ImageView("delete.png");
+			delete.setFitWidth(32);
+			delete.setPreserveRatio(true);
+			delete.setCache(true);
+			Button deleteBtn = new Button();
+			deleteBtn.setGraphic(delete);
+			deleteBtn.setOnAction(e -> {
 	        	WeatherApp.trips.remove(idx);
 	        	refreshPage();
 	        });
-			delete.setAlignment(Pos.CENTER_RIGHT);
-			repeatAndDelete.getChildren().add(delete);
+			deleteBtn.setAlignment(Pos.CENTER_RIGHT);
+			repeatAndDelete.getChildren().add(deleteBtn);
 			
 			infoPane.getChildren().add(repeatAndDelete);
 			infoPane.setOnMouseClicked(e -> {
@@ -152,6 +157,7 @@ public class IpadPgTripplanner extends IpadPage{
 		add.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT);
 		add.setText("+");
         add.setOnAction(e -> {
+        	WeatherApp.currentlyViewingTrip = null;
         	WeatherApp.changePage("edittrip");
         });
         scrollContent.getChildren().add(add);

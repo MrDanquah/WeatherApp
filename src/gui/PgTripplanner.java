@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -45,9 +47,11 @@ public class PgTripplanner extends Page{
 			startName.setAlignment(Pos.CENTER_LEFT);
 			tripNames.getChildren().add(startName);
 			
-			Label arrow = new Label(">");
-			arrow.getStyleClass().add("arrow");
-			arrow.setAlignment(Pos.CENTER);
+			// Arrow
+			ImageView arrow = new ImageView("arrow_forward.png");
+			arrow.setFitWidth(20);
+			arrow.setPreserveRatio(true);
+			arrow.setCache(true);
 			tripNames.getChildren().add(arrow);
 			
 			Label destName = new Label(trip.getDest());
@@ -102,14 +106,18 @@ public class PgTripplanner extends Page{
 			HBox.setHgrow(region, Priority.ALWAYS);
 			repeatAndDelete.getChildren().add(region);
 			
-			Button delete = new Button("D");
-			delete.getStyleClass().add("deletebtn");
-			delete.setOnAction(e -> {
+			ImageView delete = new ImageView("delete.png");
+			delete.setFitWidth(20);
+			delete.setPreserveRatio(true);
+			delete.setCache(true);
+			Button deleteBtn = new Button();
+			deleteBtn.setGraphic(delete);
+			deleteBtn.setOnAction(e -> {
 	        	WeatherApp.trips.remove(idx);
 	        	refreshPage();
 	        });
-			delete.setAlignment(Pos.CENTER_RIGHT);
-			repeatAndDelete.getChildren().add(delete);
+			deleteBtn.setAlignment(Pos.CENTER_RIGHT);
+			repeatAndDelete.getChildren().add(deleteBtn);
 			
 			infoPane.getChildren().add(repeatAndDelete);
 			infoPane.setOnMouseClicked(e -> {
@@ -152,6 +160,7 @@ public class PgTripplanner extends Page{
 		add.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT);
 		add.setText("+");
         add.setOnAction(e -> {
+        	WeatherApp.currentlyViewingTrip = null;
         	WeatherApp.changePage("edittrip");
         });
         scrollContent.getChildren().add(add);
