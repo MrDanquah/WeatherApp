@@ -28,7 +28,9 @@ public class Trip {
 	public String getStart() {
 		return start;
 	}
-
+	public void setRepeat(boolean newRValue, int index) {
+		repeat[index] = newRValue;
+	}
 	public String getDest() {
 		return dest;
 	}

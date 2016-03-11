@@ -1,17 +1,16 @@
 package gui;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import api.Trip;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -78,7 +77,8 @@ public class PgEdittrip extends Page {
 			arrivalTime.setPromptText("Arrival Time");
 
 			inputBox3.getChildren().addAll(icon3, arrivalTime);
-
+				
+			
 			HBox inputBox4 = new HBox();
 			inputBox1.setPrefSize(30, 30);
 			Label icon4 = new Label("Image");
@@ -116,14 +116,28 @@ public class PgEdittrip extends Page {
 
 			daysButtons.getChildren().addAll(sunday, monday, tuesday, wednesday, thursday, friday, saturday);
 			Button[] myDays = { sunday, monday, tuesday, wednesday, thursday, friday, saturday };
-
+		
 			for (Button dayButton : myDays) {
 
-				dayButton.setOnAction(e -> {
+				
+					
+					dayButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
 
-					dayButton.setStyle("-fx-background-color: #f26c4f");
-
-				});
+						@Override
+						public void handle(MouseEvent event) {
+							if(event.getClickCount() % 2 == 0) {
+								dayButton.setStyle("-fx-background-color: #f26c4f");
+								trip.setRepeat(true, 1);
+							} else {
+								dayButton.setStyle("-fx-background-color:#0099cc");
+								trip.setRepeat(false, 1 );
+							}
+							
+						} 
+						
+					});
+				
+			
 
 			}
 
