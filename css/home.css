@@ -172,7 +172,8 @@
 
 #navButton {
 	-fx-text-fill: white;
-	-fx-background-color: #464646
+	-fx-background-color: #464646;
+    -fx-font-size: 12pt;
 }
 #title{
 	-fx-text-fill: white;

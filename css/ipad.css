@@ -201,5 +201,10 @@
 #navButton {
 	-fx-background-color: #464646;
 	-fx-text-fill: white;
-	
+    -fx-font-size: 18pt;
+}
+#clothing {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 20pt;
 }

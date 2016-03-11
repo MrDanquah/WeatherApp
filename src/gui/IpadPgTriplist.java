@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -122,9 +123,56 @@ public class IpadPgTriplist extends IpadPage{
 			return infoPane;
 		}
 	}
+	
+	private class ClothingPane {
+		GridPane clothGrid;
+		VBox infoPane;
+
+		public ClothingPane() {
+			infoPane = new VBox();
+			infoPane.setPrefSize(512, 700);
+			infoPane.setAlignment(Pos.CENTER);
+			clothGrid = new GridPane();
+			clothGrid.setAlignment(Pos.CENTER);
+
+			clothGrid.setGridLinesVisible(false);
+			
+			rightContentGrid.setStyle("-fx-background-color: #fbaf5d");
+			
+			Label clothSuggs = new Label("Clothing Suggestions");
+			Label weatherDescriptions = new Label("There will be rain, sun and wind");
+			
+			clothSuggs.setId("clothing");
+			
+			clothSuggs.setAlignment(Pos.CENTER);
+			
+			ImageView suggOne = new ImageView("umbrella.png");
+			suggOne.setFitWidth(250);
+			suggOne.setFitHeight(250);
+			clothGrid.add(suggOne, 0, 1);
+			ImageView suggTwo = new ImageView("Clothes_gloves-36-512.png");
+			suggTwo.setFitWidth(250);
+			suggTwo.setFitHeight(250);
+			clothGrid.add(suggTwo, 1, 1);
+			ImageView suggThree = new ImageView("jacket-512.png");
+			suggThree.setFitWidth(250);
+			suggThree.setFitHeight(250);
+			clothGrid.add(suggThree, 0, 2);
+			ImageView suggFour = new ImageView("Sunglasses-512.png");
+			suggFour.setFitWidth(250);
+			suggFour.setFitHeight(250);
+			clothGrid.add(suggFour, 1, 2);
+		
+			infoPane.getChildren().addAll(clothSuggs,weatherDescriptions, clothGrid);
+		}
+
+		public VBox getPane() {
+			return infoPane;
+		}
+	}
 
 	public IpadPgTriplist() {
-		super("triplist", "Trip List", "Back", "Clothing Suggestion");
+		super("triplist", "Trip List", "Back", "");
 	}
 	
 	@Override
@@ -163,6 +211,9 @@ public class IpadPgTriplist extends IpadPage{
 		
         scrollPane.setContent(scrollContent);
         leftContentGrid.getChildren().add(scrollPane);
+        
+        ClothingPane clothPane = new ClothingPane();
+        rightContentGrid.getChildren().add(clothPane.getPane());
 	}
 
 
