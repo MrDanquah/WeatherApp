@@ -10,7 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import api.Trip;
 import api.Weather;
 import api.YWeatherConnection;
 
@@ -95,6 +98,104 @@ public class IpadPgOverview extends IpadPage{
 		}
 	}
 	
+	private class CurrentWeatherPane {
+		public VBox infoPane;
+		
+		public CurrentWeatherPane(Weather weather) {
+			infoPane = new VBox();
+			infoPane.setAlignment(Pos.CENTER);
+			infoPane.setPrefHeight(700);
+			infoPane.setStyle("-fx-background-color: " + WeatherApp.
+	        		colorMap[weather.getDate().get(Calendar.DAY_OF_WEEK) - 1]);
+			
+			// Special region used to help with centering
+			Region topRegion = new Region();
+			VBox.setVgrow(topRegion, Priority.ALWAYS);
+			infoPane.getChildren().add(topRegion);
+			
+			// Location
+			Label name = new Label("Current London Weather");
+			name.getStyleClass().add("tripdetailname");
+			name.setAlignment(Pos.CENTER);
+			infoPane.getChildren().add(name);
+			
+			// Time
+			SimpleDateFormat sdfmt = new SimpleDateFormat("h:mm a");
+			Calendar time = Calendar.getInstance();
+			
+			Label curTime = new Label(sdfmt.format(time.getTime()));
+			curTime.getStyleClass().add("tripdetailtime");
+			curTime.setAlignment(Pos.CENTER);
+			infoPane.getChildren().add(curTime);
+			
+			// Weather
+			HBox weatherDetails = new HBox();
+			weatherDetails.setAlignment(Pos.CENTER);
+			
+			VBox temps = new VBox();
+			temps.setAlignment(Pos.CENTER);
+			temps.setPrefWidth(160);
+			
+			Label exactTemp = new Label(weather.getCurrentTemp() + "\u2103");
+			exactTemp.getStyleClass().add("tripdetailexacttemp");
+			exactTemp.setAlignment(Pos.CENTER);
+			temps.getChildren().add(exactTemp);
+			
+			HBox hilo = new HBox();
+			hilo.setAlignment(Pos.CENTER);
+			
+			Label lo = new Label(weather.getLo() + "°");
+			lo.getStyleClass().add("tripdetailhilo");
+			lo.setId("darkgreytext");
+			lo.setPadding(new Insets(0, 3, 0, 0));
+			hilo.getChildren().add(lo);
+			
+			Label hi = new Label(weather.getHi() + "°");
+			hi.getStyleClass().add("tripdetailhilo");
+			hilo.getChildren().add(hi);
+			
+			temps.getChildren().add(hilo);
+			weatherDetails.getChildren().add(temps);
+			
+			Label weatherIcon = new Label(
+					WeatherApp.weatherIconMap[weather.getCondCode()]);
+			weatherIcon.getStyleClass().add("weathericon");
+			weatherIcon.setId("tripdetailwicon");
+			weatherIcon.setPrefWidth(192);
+			weatherIcon.setTranslateY(-10);
+			weatherIcon.setAlignment(Pos.CENTER);
+			weatherDetails.getChildren().add(weatherIcon);
+			
+			VBox windDetails = new VBox();
+			windDetails.setAlignment(Pos.CENTER);
+			windDetails.setPrefWidth(160);
+			
+			Label windIcon = new Label(WeatherApp.
+					windIconMap[((weather.getWindDir() + 22)%360)/45]);
+			windIcon.getStyleClass().add("weathericon");
+			windIcon.setId("tripdetailwind");
+			windIcon.setTranslateY(-10);
+			windDetails.getChildren().add(windIcon);
+			
+			Label windSpeed = new Label(weather.getWindSpeed() + " mph");
+			windSpeed.getStyleClass().add("tripdetailwindspeed");
+			windDetails.getChildren().add(windSpeed);
+			
+			weatherDetails.getChildren().add(windDetails);
+			
+			infoPane.getChildren().add(weatherDetails);
+			
+			// Special region used to help with centering
+			Region bottomRegion = new Region();
+			VBox.setVgrow(bottomRegion, Priority.ALWAYS);
+			infoPane.getChildren().add(bottomRegion);
+		}
+		
+		public VBox getPane() {
+			return infoPane;
+		}
+	}
+	
 	public IpadPgOverview() {
 		super("overview", "Overview", "Overview", "Trip Planner");
 	}
@@ -165,6 +266,10 @@ public class IpadPgOverview extends IpadPage{
         GridPane.setRowIndex(btn4, 3);
         GridPane.setColumnIndex(btn4, 0);
         leftContentGrid.getChildren().add(btn4);
+        
+        // Add the current london weather pane to the right
+        CurrentWeatherPane curWeather = new CurrentWeatherPane(londonWeather.get(0));
+        rightContentGrid.getChildren().add(curWeather.getPane());
 	}
 
 	@Override
