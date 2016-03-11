@@ -18,7 +18,7 @@ import api.Trip;
 import api.Weather;
 import api.YWeatherConnection;
 
-public class PgTriplist extends Page{
+public class IpadPgTriplist extends IpadPage{
 	private ScrollPane scrollPane;
 	private VBox scrollContent;
 	
@@ -72,8 +72,8 @@ public class PgTriplist extends Page{
 			infoPane.getChildren().add(startPane);
 			
 			// Arrow
-			Label arrow = new Label("arrow forward");
-			arrow.getStyleClass().add("material-icons");
+			Label arrow = new Label(">");
+			arrow.getStyleClass().add("arrow");
 			arrow.setAlignment(Pos.CENTER);
 			infoPane.getChildren().add(arrow);
 			
@@ -121,7 +121,7 @@ public class PgTriplist extends Page{
 		}
 	}
 
-	public PgTriplist() {
+	public IpadPgTriplist() {
 		super("triplist", "Trip List", "Back", "Clothing Suggestion");
 	}
 	

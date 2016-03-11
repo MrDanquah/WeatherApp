@@ -13,7 +13,9 @@ import javafx.stage.Stage;
 
 public class WeatherApp extends Application{
 	private static Stage window;
-	private static Map<String, Page> pages = new HashMap<String, Page>();
+	public static boolean isIphone = false; // Whether we are running iPhone or iPad version
+	private static Map<String, Page> iPhonePages = new HashMap<String, Page>();
+	private static Map<String, IpadPage> iPadPages = new HashMap<String, IpadPage>();
 	public static List<Trip> trips = new ArrayList<Trip>();
 	// We use these global references/variables to allow different pages to know  
 	// what day and trip we are looking at.
@@ -78,24 +80,43 @@ public class WeatherApp extends Application{
 		currentlyViewingDay = 1;
 		currentlyViewingTrip = trips.get(0);
     	
+		// Create iPhone pages
     	Page overview = new PgOverview();
     	Page triplist = new PgTriplist();
     	Page tripplanner = new PgTripplanner();
     	Page tripdetail = new PgTripdetail();
     	Page editTrip = new PgEdittrip();
-    	pages.put(overview.getName(), overview);
-    	pages.put(triplist.getName(), triplist);
-    	pages.put(tripplanner.getName(), tripplanner);
-    	pages.put(tripdetail.getName(), tripdetail);
-    	pages.put(editTrip.getName(), editTrip);
+    	iPhonePages.put(overview.getName(), overview);
+    	iPhonePages.put(triplist.getName(), triplist);
+    	iPhonePages.put(tripplanner.getName(), tripplanner);
+    	iPhonePages.put(tripdetail.getName(), tripdetail);
+    	iPhonePages.put(editTrip.getName(), editTrip);
+    	
+    	
+    	// Create iPad pages
+    	IpadPage ipadoverview = new IpadPgOverview();
+    	IpadPage ipadtriplist = new IpadPgTriplist();
+    	IpadPage ipadtripplanner = new IpadPgTripplanner();
+    	IpadPage ipadtripdetail = new IpadPgTripdetail();
+    	IpadPage ipadeditTrip = new IpadPgEdittrip();
+    	iPadPages.put(ipadoverview.getName(), ipadoverview);
+    	iPadPages.put(ipadtriplist.getName(), ipadtriplist);
+    	iPadPages.put(ipadtripplanner.getName(), ipadtripplanner);
+    	iPadPages.put(ipadtripdetail.getName(), ipadtripdetail);
+    	iPadPages.put(ipadeditTrip.getName(), ipadeditTrip);
     	
         window.setScene(overview.getScene());
         window.show();
     }
     
     public static void changePage(String name) {
-    	pages.get(name).refreshPage();
-    	window.setScene(pages.get(name).getScene());
+    	if(isIphone) {
+    		iPhonePages.get(name).refreshPage();
+        	window.setScene(iPhonePages.get(name).getScene());
+    	} else {
+    		iPadPages.get(name).refreshPage();
+        	window.setScene(iPadPages.get(name).getScene());
+    	}
     }
     
     /*

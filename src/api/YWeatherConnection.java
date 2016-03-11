@@ -139,7 +139,15 @@ public class YWeatherConnection {
 		windDir = results.getJSONObject("wind").getInt("direction");
 		windSpeed = (int) results.getJSONObject("wind").getDouble("speed");
 		
+		SimpleDateFormat sdfmt = new SimpleDateFormat("d MMM yyyy");
 		date = Calendar.getInstance();
+		// Stupid Yahoo Weather doesn't update at midnight, so we are stuck with 
+		// old weather data for an hour or so at midnight
+		try {
+			date.setTime(sdfmt.parse(forecast.getJSONObject(0).getString("date")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 		location = results.getJSONObject("location").getString("city");
 		
@@ -154,7 +162,6 @@ public class YWeatherConnection {
 			hi = forecast.getJSONObject(i).getInt("high");
 			lo = forecast.getJSONObject(i).getInt("low");
 			
-			SimpleDateFormat sdfmt = new SimpleDateFormat("d MMM yyyy");
 			try {
 				date.setTime(sdfmt.parse(forecast.getJSONObject(i).getString("date")));
 			} catch (ParseException e) {
