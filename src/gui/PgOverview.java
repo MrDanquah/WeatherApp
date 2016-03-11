@@ -64,12 +64,13 @@ public class PgOverview extends Page{
 				HBox hilo = new HBox();
 				hilo.setAlignment(Pos.CENTER);
 				
-				Label lo = new Label(weather.getLo() + "\u00B0");
+
+				Label lo = new Label(weather.getLo() + "\u00b0");
 				lo.getStyleClass().add("overviewhilo");
 				lo.setId("darkgreytext");
 				hilo.getChildren().add(lo);
-				
-				Label hi = new Label(weather.getHi() + "\u00B0");
+
+				Label hi = new Label(weather.getHi() + "\u00b0");
 				hi.getStyleClass().add("overviewhilo");
 				hilo.getChildren().add(hi);
 				
