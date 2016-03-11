@@ -1,0 +1,181 @@
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.root {
+     -fx-background-color: #7d7d7d;
+}
+
+.button {
+    -fx-background-radius: 0;
+    -fx-background-color: #7d7d7d;
+    -fx-padding: 0;
+}
+
+.button:pressed {
+	-fx-opacity: 0.5;
+}
+
+.weathericon {
+    -fx-text-fill: white;
+    -fx-font-family: "artill clean fixed";
+}
+
+#darkgreytext {
+    -fx-text-fill: #464646;
+}
+
+.overviewdate {
+    -fx-text-fill: #dcdcdc;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12pt;
+}
+
+.overviewday {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 16pt;
+}
+
+#overviewwicon {
+    -fx-font-size: 40pt;
+}
+
+.overviewtemp {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 32pt;
+}
+
+.overviewhilo {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 24pt;
+}
+
+.overviewtext {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 10pt;
+}
+
+.triplistname {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: bold;
+    -fx-font-size: 12pt;
+}
+
+.triplisttemp {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 22pt;
+}
+
+.triplisttime {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 9pt;
+}
+
+#triplistwicon {
+    -fx-font-size: 28pt;
+}
+
+.arrow {
+    -fx-text-fill: white;
+    -fx-font-family: "Material Icons";
+    -fx-font-size: 10pt;
+}
+
+.tripplannername {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14pt;
+}
+
+.tripplannertime {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: 500;
+    -fx-font-size: 24pt;
+}
+
+.tripplannerrepeat {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12pt;
+}
+
+.tripdetailname {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: 500;
+    -fx-font-size: 18pt;
+}
+
+.tripdetailtime {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14pt;
+}
+
+.tripdetailexacttemp {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: 500;
+    -fx-font-size: 32pt;
+}
+
+.tripdetailhilo {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 14pt;
+}
+
+#tripdetailwicon {
+    -fx-font-size: 50pt;
+}
+
+#tripdetailwind {
+    -fx-text-fill: white;
+    -fx-font-size: 32pt;
+}
+
+.tripdetailwindspeed {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12pt;
+}
+
+.bordered {
+    -fx-border-width: 1;
+    -fx-border-color: white;
+}
+
+#addbtn {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 50pt;
+}
+
+#textField {
+    -fx-background-color:#00bff3 -fx-control-inner-background #00bff3;
+    -fx-background-insets: 0;
+    -fx-padding: 4 4 4 4;
+}
+#navButton {
+	-fx-background-color: #333333;
+	-fx-text-fill: white;
+	
+}
