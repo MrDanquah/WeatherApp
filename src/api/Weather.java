@@ -9,19 +9,24 @@ public class Weather {
 	private int hourly[];
 	private int windDir, windSpeed;
 	private int condCode;
+	private int humidity;
+	private double visibility;
 	private String condText;
 	private Calendar date;
 	private String location;
 	private int woeid;
 	
 	public Weather(boolean isForecast, int current, int hi, int lo, int windDir, int windSpeed,
-			int condCode, String condText, Calendar date, String location, int woeid) {
+			int humidity, double visibility, int condCode, String condText, Calendar date, 
+			String location, int woeid) {
 		this.isForecast = isForecast;
 		this.current = current;
 		this.hi = hi;
 		this.lo = lo;
 		this.windDir = windDir;
 		this.windSpeed = windSpeed;
+		this.humidity = humidity;
+		this.visibility = visibility;
 		this.condCode = condCode;
 		this.condText = condText;
 		this.date = (Calendar) date.clone();
@@ -56,6 +61,14 @@ public class Weather {
 	
 	public int getWindSpeed() {
 		return windSpeed;
+	}
+	
+	public int getHumidity() {
+		return humidity;
+	}
+	
+	public double getVisibility() {
+		return visibility;
 	}
 	
 	public int getCondCode() {

@@ -1,24 +1,10 @@
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-}
-
 .root {
      -fx-background-color: #7d7d7d;
 }
 
 .button {
     -fx-background-radius: 0;
-    -fx-background-color: #7d7d7d;
+    -fx-background-color: rgba(0, 0, 0, 0);
     -fx-padding: 0;
 }
 
@@ -38,58 +24,58 @@
 .overviewdate {
     -fx-text-fill: #dcdcdc;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 12pt;
+    -fx-font-size: 24pt;
 }
 
 .overviewday {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 16pt;
+    -fx-font-size: 32pt;
 }
 
 #overviewwicon {
-    -fx-font-size: 40pt;
+    -fx-font-size: 60pt;
 }
 
 .overviewtemp {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 32pt;
+    -fx-font-size: 52pt;
 }
 
 .overviewhilo {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 24pt;
+    -fx-font-size: 42pt;
 }
 
 .overviewtext {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 10pt;
+    -fx-font-size: 18pt;
 }
 
 .triplistname {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-weight: bold;
-    -fx-font-size: 12pt;
+    -fx-font-size: 20pt;
 }
 
 .triplisttemp {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 22pt;
+    -fx-font-size: 36pt;
 }
 
 .triplisttime {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 9pt;
+    -fx-font-size: 18pt;
 }
 
 #triplistwicon {
-    -fx-font-size: 28pt;
+    -fx-font-size: 48pt;
 }
 
 .arrow {
@@ -101,61 +87,67 @@
 .tripplannername {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 14pt;
+    -fx-font-size: 24pt;
 }
 
 .tripplannertime {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-weight: 500;
-    -fx-font-size: 24pt;
+    -fx-font-size: 48pt;
 }
 
 .tripplannerrepeat {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 12pt;
+    -fx-font-size: 18pt;
 }
 
 .tripdetailname {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-weight: 500;
-    -fx-font-size: 18pt;
+    -fx-font-size: 28pt;
 }
 
 .tripdetailtime {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 14pt;
+    -fx-font-size: 24pt;
 }
 
 .tripdetailexacttemp {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-weight: 500;
-    -fx-font-size: 32pt;
+    -fx-font-size: 48pt;
 }
 
 .tripdetailhilo {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 14pt;
+    -fx-font-size: 24pt;
 }
 
 #tripdetailwicon {
-    -fx-font-size: 50pt;
+    -fx-font-size: 60pt;
 }
 
 #tripdetailwind {
     -fx-text-fill: white;
-    -fx-font-size: 32pt;
+    -fx-font-size: 48pt;
 }
 
 .tripdetailwindspeed {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 12pt;
+    -fx-font-size: 24pt;
+}
+
+.tripdetailmoreinfo {
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 18pt;
 }
 
 .bordered {
@@ -166,6 +158,7 @@
 #addbtn {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
+    -fx-background-color: #7d7d7d;
     -fx-font-size: 50pt;
 }
 

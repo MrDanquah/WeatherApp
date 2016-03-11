@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class WeatherApp extends Application{
 	private static Stage window;
-	public static boolean isIphone = true; // Whether we are running iPhone or iPad version
+	public static boolean isIphone = false; // Whether we are running iPhone or iPad version
 	private static Map<String, Page> iPhonePages = new HashMap<String, Page>();
 	private static Map<String, IpadPage> iPadPages = new HashMap<String, IpadPage>();
 	public static List<Trip> trips = new ArrayList<Trip>();
@@ -105,7 +105,11 @@ public class WeatherApp extends Application{
     	iPadPages.put(ipadtripdetail.getName(), ipadtripdetail);
     	iPadPages.put(ipadeditTrip.getName(), ipadeditTrip);
     	
-        window.setScene(overview.getScene());
+    	if(isIphone) {
+    		window.setScene(overview.getScene());
+    	} else {
+    		window.setScene(ipadoverview.getScene());
+    	}
         window.show();
     }
     

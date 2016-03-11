@@ -53,7 +53,7 @@ public class PgTriplist extends Page{
 			startWeatherIcon.getStyleClass().add("weathericon");
 			startWeatherIcon.setId("triplistwicon");
 			startWeatherIcon.setPrefWidth(75);
-			startWeatherIcon.setTranslateY(-15);
+			startWeatherIcon.setTranslateY(-10);
 			startWeatherIcon.setAlignment(Pos.CENTER);
 			startWeatherPane.getChildren().add(startWeatherIcon);
 			
@@ -97,7 +97,7 @@ public class PgTriplist extends Page{
 			destWeatherIcon.getStyleClass().add("weathericon");
 			destWeatherIcon.setId("triplistwicon");
 			destWeatherIcon.setPrefWidth(75);
-			destWeatherIcon.setTranslateY(-15);
+			destWeatherIcon.setTranslateY(-10);
 			destWeatherIcon.setAlignment(Pos.CENTER);
 			destWeatherPane.getChildren().add(destWeatherIcon);
 			

@@ -35,11 +35,6 @@ public class PgTripdetail extends Page{
 			infoPane.setStyle("-fx-background-color: " + WeatherApp.
 	        		colorMap[WeatherApp.currentlyViewingDay]);
 			
-			// Special region used to help with centering
-			Region topRegion = new Region();
-			VBox.setVgrow(topRegion, Priority.ALWAYS);
-			infoPane.getChildren().add(topRegion);
-			
 			// Location
 			Label name = new Label(isStart ? trip.getStart() : trip.getDest());
 			name.getStyleClass().add("tripdetailname");

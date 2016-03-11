@@ -50,7 +50,7 @@ public class PgOverview extends Page{
 			weatherIcon = new Label(WeatherApp.weatherIconMap[weather.getCondCode()]);
 			weatherIcon.getStyleClass().add("weathericon");
 			weatherIcon.setId("overviewwicon");
-			weatherIcon.setTranslateY(-5);
+			weatherIcon.setTranslateY(-12);
 			weatherIcon.setTranslateX(5);
 			weatherIcon.setPrefWidth(100);
 			weatherIcon.setAlignment(Pos.CENTER);
