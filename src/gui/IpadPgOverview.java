@@ -66,12 +66,12 @@ public class IpadPgOverview extends IpadPage{
 				HBox hilo = new HBox();
 				hilo.setAlignment(Pos.CENTER);
 				
-				Label lo = new Label(weather.getLo() + "°");
+				Label lo = new Label(weather.getLo() + "\u00b0");
 				lo.getStyleClass().add("overviewhilo");
 				lo.setId("darkgreytext");
 				hilo.getChildren().add(lo);
 				
-				Label hi = new Label(weather.getHi() + "°");
+				Label hi = new Label(weather.getHi() + "\u00b0");
 				hi.getStyleClass().add("overviewhilo");
 				hilo.getChildren().add(hi);
 				
@@ -139,13 +139,13 @@ public class IpadPgOverview extends IpadPage{
 			HBox hilo = new HBox();
 			hilo.setAlignment(Pos.CENTER);
 			
-			Label lo = new Label(weather.getLo() + "°");
+			Label lo = new Label(weather.getLo() + "\u00b0");
 			lo.getStyleClass().add("tripdetailhilo");
 			lo.setId("darkgreytext");
 			lo.setPadding(new Insets(0, 3, 0, 0));
 			hilo.getChildren().add(lo);
 			
-			Label hi = new Label(weather.getHi() + "°");
+			Label hi = new Label(weather.getHi() + "\u00b0");
 			hi.getStyleClass().add("tripdetailhilo");
 			hilo.getChildren().add(hi);
 			
