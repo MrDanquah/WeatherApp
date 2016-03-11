@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -72,9 +73,10 @@ public class PgTriplist extends Page{
 			infoPane.getChildren().add(startPane);
 			
 			// Arrow
-			Label arrow = new Label("arrow forward");
-			arrow.getStyleClass().add("material-icons");
-			arrow.setAlignment(Pos.CENTER);
+			ImageView arrow = new ImageView("arrow_forward.png");
+			arrow.setFitWidth(20);
+			arrow.setPreserveRatio(true);
+			arrow.setCache(true);
 			infoPane.getChildren().add(arrow);
 			
 			// Destination location info
