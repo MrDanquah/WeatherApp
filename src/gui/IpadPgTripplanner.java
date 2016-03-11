@@ -31,7 +31,7 @@ public class IpadPgTripplanner extends IpadPage{
 			 * so that it behaves like a button when clicked.
 			 */
 			infoPane = new VBox();
-			infoPane.setPrefSize(320, 108);
+			infoPane.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT);
 			infoPane.setStyle("-fx-background-color: " + WeatherApp.
 	        		colorMap[idx%7]);
 			
@@ -41,7 +41,7 @@ public class IpadPgTripplanner extends IpadPage{
 			
 			Label startName = new Label(trip.getStart());
 			startName.getStyleClass().add("tripplannername");
-			startName.setPrefWidth(150);
+			startName.setPrefWidth(240);
 			startName.setAlignment(Pos.CENTER_LEFT);
 			tripNames.getChildren().add(startName);
 			
@@ -52,7 +52,7 @@ public class IpadPgTripplanner extends IpadPage{
 			
 			Label destName = new Label(trip.getDest());
 			destName.getStyleClass().add("tripplannername");
-			destName.setPrefWidth(150);
+			destName.setPrefWidth(240);
 			destName.setAlignment(Pos.CENTER_RIGHT);
 			destName.setTextAlignment(TextAlignment.RIGHT);
 			tripNames.getChildren().add(destName);
@@ -134,11 +134,11 @@ public class IpadPgTripplanner extends IpadPage{
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setFitToWidth(true);
-		scrollPane.setPrefSize(320, 432);
+		scrollPane.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT * 4);
 		
 		// Set up and create the content in the scroll pane
 		scrollContent = new VBox();
-		scrollContent.setPrefWidth(320);
+		scrollContent.setPrefWidth(IpadPage.BTN_WIDTH);
 		
 		int idx = 0;
 		for(Trip trip : WeatherApp.trips) {
@@ -149,7 +149,7 @@ public class IpadPgTripplanner extends IpadPage{
 		
 		Button add = new Button();
 		add.setId("addbtn");
-		add.setPrefSize(320, 108);
+		add.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT);
 		add.setText("+");
         add.setOnAction(e -> {
         	WeatherApp.changePage("edittrip");
@@ -157,7 +157,7 @@ public class IpadPgTripplanner extends IpadPage{
         scrollContent.getChildren().add(add);
 		
 		scrollPane.setContent(scrollContent);
-        mainContentGrid.getChildren().add(scrollPane);
+        leftContentGrid.getChildren().add(scrollPane);
 	}
 
 	@Override

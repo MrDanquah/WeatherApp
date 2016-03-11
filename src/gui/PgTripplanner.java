@@ -31,7 +31,7 @@ public class PgTripplanner extends Page{
 			 * so that it behaves like a button when clicked.
 			 */
 			infoPane = new VBox();
-			infoPane.setPrefSize(320, 108);
+			infoPane.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT);
 			infoPane.setStyle("-fx-background-color: " + WeatherApp.
 	        		colorMap[idx%7]);
 			
@@ -134,11 +134,11 @@ public class PgTripplanner extends Page{
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setFitToWidth(true);
-		scrollPane.setPrefSize(320, 432);
+		scrollPane.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT * 4);
 		
 		// Set up and create the content in the scroll pane
 		scrollContent = new VBox();
-		scrollContent.setPrefWidth(320);
+		scrollContent.setPrefWidth(Page.BTN_WIDTH);
 		
 		int idx = 0;
 		for(Trip trip : WeatherApp.trips) {
@@ -149,7 +149,7 @@ public class PgTripplanner extends Page{
 		
 		Button add = new Button();
 		add.setId("addbtn");
-		add.setPrefSize(320, 108);
+		add.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT);
 		add.setText("+");
         add.setOnAction(e -> {
         	WeatherApp.changePage("edittrip");

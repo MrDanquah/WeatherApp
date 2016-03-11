@@ -75,7 +75,7 @@ public class IpadPgEdittrip extends IpadPage {
 
 		GridPane.setColumnIndex(start.getPane(), 0);
 		GridPane.setRowIndex(start.getPane(), 0);
-		mainContentGrid.getChildren().add(start.getPane());
+		leftContentGrid.getChildren().add(start.getPane());
 		// TODO Auto-generated method stub
 
 	}

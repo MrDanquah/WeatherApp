@@ -31,7 +31,7 @@ public class IpadPgTripdetail extends IpadPage{
 			
 			infoPane = new VBox();
 			infoPane.setAlignment(Pos.CENTER);
-			infoPane.setPrefHeight(216);
+			infoPane.setPrefHeight(700);
 			infoPane.setStyle("-fx-background-color: " + WeatherApp.
 	        		colorMap[WeatherApp.currentlyViewingDay]);
 			
@@ -59,7 +59,7 @@ public class IpadPgTripdetail extends IpadPage{
 			
 			VBox temps = new VBox();
 			temps.setAlignment(Pos.CENTER);
-			temps.setPrefWidth(100);
+			temps.setPrefWidth(160);
 			
 			Label exactTemp = new Label(weather.getCurrentTemp() + "\u2103");
 			exactTemp.getStyleClass().add("tripdetailexacttemp");
@@ -86,14 +86,14 @@ public class IpadPgTripdetail extends IpadPage{
 					WeatherApp.weatherIconMap[weather.getCondCode()]);
 			weatherIcon.getStyleClass().add("weathericon");
 			weatherIcon.setId("tripdetailwicon");
-			weatherIcon.setPrefWidth(120);
+			weatherIcon.setPrefWidth(192);
 			weatherIcon.setTranslateY(-10);
 			weatherIcon.setAlignment(Pos.CENTER);
 			weatherDetails.getChildren().add(weatherIcon);
 			
 			VBox windDetails = new VBox();
 			windDetails.setAlignment(Pos.CENTER);
-			windDetails.setPrefWidth(100);
+			windDetails.setPrefWidth(160);
 			
 			Label windIcon = new Label(WeatherApp.
 					windIconMap[((weather.getWindDir() + 22)%360)/45]);
@@ -136,14 +136,15 @@ public class IpadPgTripdetail extends IpadPage{
 				Color.web("#7d7d7d"), 
 				BorderStrokeStyle.SOLID,
 				CornerRadii.EMPTY,
-				new BorderWidths(0, 0, 2, 0))));
-		GridPane.setColumnIndex(start.getPane(), 0);
-		GridPane.setRowIndex(start.getPane(), 0);
-		mainContentGrid.getChildren().add(start.getPane());
+				new BorderWidths(0, 1, 0, 0))));
+		dest.getPane().setBorder(new Border(new BorderStroke(
+				Color.web("#7d7d7d"), 
+				BorderStrokeStyle.SOLID,
+				CornerRadii.EMPTY,
+				new BorderWidths(0, 0, 0, 1))));
 		
-		GridPane.setColumnIndex(dest.getPane(), 0);
-		GridPane.setRowIndex(dest.getPane(), 1);
-		mainContentGrid.getChildren().add(dest.getPane());
+		leftContentGrid.getChildren().add(start.getPane());
+		rightContentGrid.getChildren().add(dest.getPane());
 	}
 	
 	@Override

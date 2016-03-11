@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
@@ -15,12 +16,17 @@ import javafx.scene.paint.Color;
 public abstract class IpadPage {
 	private Scene pageScene;
 	private VBox pageContentandNav;
-	protected GridPane mainContentGrid;
+	private HBox pageContent;
+	protected GridPane leftContentGrid;
+	protected GridPane rightContentGrid;
 	private String name;
 	protected Button lButton;
 	protected Button rButton;
 	protected String displayName;
 	private HBox navBar;
+	
+	protected static final int BTN_WIDTH = 512;
+	protected static final int BTN_HEIGHT = 175;
 
 	public IpadPage(String name, String displayName, String leftButtonText, String rightButtonText) {
 		this.name = name;
@@ -28,8 +34,13 @@ public abstract class IpadPage {
 		
 		// Set up the grids and layout managers
 		pageContentandNav = new VBox();
-		mainContentGrid = new GridPane();
-		mainContentGrid.setPrefSize(1024, 700);
+		pageContent = new HBox();
+		pageContent.setAlignment(Pos.CENTER);
+		leftContentGrid = new GridPane();
+		leftContentGrid.setPrefSize(512, 700);
+		rightContentGrid = new GridPane();
+		rightContentGrid.setPrefSize(512, 700);
+		pageContent.getChildren().addAll(leftContentGrid, rightContentGrid);
 		navBar = new HBox();
 		navBar.setPrefSize(1024, 68);
 		
@@ -60,11 +71,10 @@ public abstract class IpadPage {
 		navBar.getChildren().addAll(lButton, rButton);
 		
 		// Add main content and navbar to the scene and generate the scene
-		pageContentandNav.getChildren().add(mainContentGrid);
-		pageContentandNav.getChildren().add(navBar);
+		pageContentandNav.getChildren().addAll(pageContent, navBar);
 		
 		pageScene = new Scene(pageContentandNav, 1024, 768);
-		pageScene.getStylesheets().add(getClass().getResource("/home.css").toExternalForm());
+		pageScene.getStylesheets().add(getClass().getResource("/ipad.css").toExternalForm());
 	}
 
 	public String getName() {

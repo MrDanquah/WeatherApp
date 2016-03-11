@@ -21,6 +21,9 @@ public abstract class Page {
 	protected Button rButton;
 	protected String displayName;
 	private HBox navBar;
+	
+	protected static final int BTN_WIDTH = 320;
+	protected static final int BTN_HEIGHT = 108;
 
 	public Page(String name, String displayName, String leftButtonText, String rightButtonText) {
 		this.name = name;

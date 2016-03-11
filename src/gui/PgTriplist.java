@@ -132,18 +132,18 @@ public class PgTriplist extends Page{
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setFitToWidth(true);
-		scrollPane.setPrefSize(320, 432);
+		scrollPane.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT * 4);
 		
 		// Set up and create the content in the scroll pane
 		scrollContent = new VBox();
-		scrollContent.setPrefWidth(320);
+		scrollContent.setPrefWidth(Page.BTN_WIDTH);
 		
 		for(Trip trip : WeatherApp.trips) {
 			// Display only trips for this day
 			if(trip.getRepeat()[WeatherApp.currentlyViewingDay]) {
 				Button tripBtn = new Button();
 				tripBtn.setGraphic((new TriplistPane(trip)).getPane());
-		        tripBtn.setPrefSize(320, 108);
+		        tripBtn.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT);
 		        tripBtn.setStyle("-fx-background-color: " + WeatherApp.
 		        		colorMap[WeatherApp.currentlyViewingDay]);
 		        tripBtn.setBorder(new Border(new BorderStroke(

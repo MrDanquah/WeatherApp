@@ -108,7 +108,7 @@ public class PgOverview extends Page{
 		
 		Button btn1 = new Button();
 		btn1.setGraphic((new ForecastPane(londonWeather.get(0))).getPane());
-        btn1.setPrefSize(320, 108);
+        btn1.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT);
         btn1.setStyle("-fx-background-color: " + WeatherApp.
         		colorMap[londonWeather.get(0).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn1.setOnAction(e -> {
@@ -123,7 +123,7 @@ public class PgOverview extends Page{
         
         Button btn2 = new Button();
         btn2.setGraphic((new ForecastPane(londonWeather.get(1))).getPane());
-        btn2.setPrefSize(320, 108);
+        btn2.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT);
         btn2.setStyle("-fx-background-color: " + WeatherApp.
         		colorMap[londonWeather.get(1).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn2.setOnAction(e -> {
@@ -138,7 +138,7 @@ public class PgOverview extends Page{
         
         Button btn3 = new Button();
         btn3.setGraphic((new ForecastPane(londonWeather.get(2))).getPane());
-        btn3.setPrefSize(320, 108);
+        btn3.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT);
         btn3.setStyle("-fx-background-color: " + WeatherApp.
         		colorMap[londonWeather.get(2).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn3.setOnAction(e -> {
@@ -153,7 +153,7 @@ public class PgOverview extends Page{
         
         Button btn4 = new Button();
         btn4.setGraphic((new ForecastPane(londonWeather.get(3))).getPane());
-        btn4.setPrefSize(320, 108);
+        btn4.setPrefSize(Page.BTN_WIDTH, Page.BTN_HEIGHT);
         btn4.setStyle("-fx-background-color: " + WeatherApp.
         		colorMap[londonWeather.get(3).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn4.setOnAction(e -> {

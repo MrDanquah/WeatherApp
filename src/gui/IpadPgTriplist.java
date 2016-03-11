@@ -37,7 +37,7 @@ public class IpadPgTriplist extends IpadPage{
 			
 			// Start location info
 			VBox startPane = new VBox();
-			startPane.setPrefWidth(150);
+			startPane.setPrefWidth(240);
 			
 			Label startName = new Label(trip.getStart());
 			startName.getStyleClass().add("triplistname");
@@ -51,14 +51,14 @@ public class IpadPgTriplist extends IpadPage{
 					WeatherApp.weatherIconMap[startWeather.getCondCode()]);
 			startWeatherIcon.getStyleClass().add("weathericon");
 			startWeatherIcon.setId("triplistwicon");
-			startWeatherIcon.setPrefWidth(75);
+			startWeatherIcon.setPrefWidth(120);
 			startWeatherIcon.setTranslateY(-15);
 			startWeatherIcon.setAlignment(Pos.CENTER);
 			startWeatherPane.getChildren().add(startWeatherIcon);
 			
 			Label startTemp = new Label(startWeather.getCurrentTemp() + "\u2103");
 			startTemp.getStyleClass().add("triplisttemp");
-			startTemp.setPrefWidth(75);
+			startTemp.setPrefWidth(120);
 			startTemp.setAlignment(Pos.CENTER_LEFT);
 			startWeatherPane.getChildren().add(startTemp);
 			
@@ -79,7 +79,7 @@ public class IpadPgTriplist extends IpadPage{
 			
 			// Destination location info
 			VBox destPane = new VBox();
-			destPane.setPrefWidth(150);
+			destPane.setPrefWidth(240);
 			
 			Label destName = new Label(trip.getDest());
 			destName.getStyleClass().add("triplistname");
@@ -94,14 +94,14 @@ public class IpadPgTriplist extends IpadPage{
 					WeatherApp.weatherIconMap[destWeather.getCondCode()]);
 			destWeatherIcon.getStyleClass().add("weathericon");
 			destWeatherIcon.setId("triplistwicon");
-			destWeatherIcon.setPrefWidth(75);
+			destWeatherIcon.setPrefWidth(120);
 			destWeatherIcon.setTranslateY(-15);
 			destWeatherIcon.setAlignment(Pos.CENTER);
 			destWeatherPane.getChildren().add(destWeatherIcon);
 			
 			Label destTemp = new Label(destWeather.getCurrentTemp() + "\u2103");
 			destTemp.getStyleClass().add("triplisttemp");
-			destTemp.setPrefWidth(75);
+			destTemp.setPrefWidth(120);
 			destTemp.setAlignment(Pos.CENTER);
 			destWeatherPane.getChildren().add(destTemp);
 			
@@ -132,25 +132,25 @@ public class IpadPgTriplist extends IpadPage{
 		scrollPane.setHbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setVbarPolicy(ScrollBarPolicy.NEVER);
 		scrollPane.setFitToWidth(true);
-		scrollPane.setPrefSize(320, 432);
+		scrollPane.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT * 4);
 		
 		// Set up and create the content in the scroll pane
 		scrollContent = new VBox();
-		scrollContent.setPrefWidth(320);
+		scrollContent.setPrefWidth(IpadPage.BTN_WIDTH);
 		
 		for(Trip trip : WeatherApp.trips) {
 			// Display only trips for this day
 			if(trip.getRepeat()[WeatherApp.currentlyViewingDay]) {
 				Button tripBtn = new Button();
 				tripBtn.setGraphic((new TriplistPane(trip)).getPane());
-		        tripBtn.setPrefSize(320, 108);
+		        tripBtn.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT);
 		        tripBtn.setStyle("-fx-background-color: " + WeatherApp.
 		        		colorMap[WeatherApp.currentlyViewingDay]);
 		        tripBtn.setBorder(new Border(new BorderStroke(
 						Color.web("#7d7d7d"), 
 						BorderStrokeStyle.SOLID,
 						CornerRadii.EMPTY,
-						new BorderWidths(0, 0, 1, 0))));
+						new BorderWidths(0, 0, 2, 0))));
 		        tripBtn.setOnAction(e -> {
 		        	WeatherApp.currentlyViewingTrip = trip;
 		        	WeatherApp.changePage("tripdetail");
@@ -160,7 +160,7 @@ public class IpadPgTriplist extends IpadPage{
 		}
 		
         scrollPane.setContent(scrollContent);
-        mainContentGrid.getChildren().add(scrollPane);
+        leftContentGrid.getChildren().add(scrollPane);
 	}
 
 

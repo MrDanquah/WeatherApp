@@ -108,7 +108,7 @@ public class IpadPgOverview extends IpadPage{
 		
 		Button btn1 = new Button();
 		btn1.setGraphic((new ForecastPane(londonWeather.get(0))).getPane());
-        btn1.setPrefSize(320, 108);
+        btn1.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT);
         btn1.setStyle("-fx-background-color: " + WeatherApp.
         		colorMap[londonWeather.get(0).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn1.setOnAction(e -> {
@@ -119,11 +119,11 @@ public class IpadPgOverview extends IpadPage{
         });
         GridPane.setRowIndex(btn1, 0);
         GridPane.setColumnIndex(btn1, 0);
-        mainContentGrid.getChildren().add(btn1);
+        leftContentGrid.getChildren().add(btn1);
         
         Button btn2 = new Button();
         btn2.setGraphic((new ForecastPane(londonWeather.get(1))).getPane());
-        btn2.setPrefSize(320, 108);
+        btn2.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT);
         btn2.setStyle("-fx-background-color: " + WeatherApp.
         		colorMap[londonWeather.get(1).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn2.setOnAction(e -> {
@@ -134,11 +134,11 @@ public class IpadPgOverview extends IpadPage{
         });
         GridPane.setRowIndex(btn2, 1);
         GridPane.setColumnIndex(btn2, 0);
-        mainContentGrid.getChildren().add(btn2);
+        leftContentGrid.getChildren().add(btn2);
         
         Button btn3 = new Button();
         btn3.setGraphic((new ForecastPane(londonWeather.get(2))).getPane());
-        btn3.setPrefSize(320, 108);
+        btn3.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT);
         btn3.setStyle("-fx-background-color: " + WeatherApp.
         		colorMap[londonWeather.get(2).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn3.setOnAction(e -> {
@@ -149,11 +149,11 @@ public class IpadPgOverview extends IpadPage{
         });
         GridPane.setRowIndex(btn3, 2);
         GridPane.setColumnIndex(btn3, 0);
-        mainContentGrid.getChildren().add(btn3);
+        leftContentGrid.getChildren().add(btn3);
         
         Button btn4 = new Button();
         btn4.setGraphic((new ForecastPane(londonWeather.get(3))).getPane());
-        btn4.setPrefSize(320, 108);
+        btn4.setPrefSize(IpadPage.BTN_WIDTH, IpadPage.BTN_HEIGHT);
         btn4.setStyle("-fx-background-color: " + WeatherApp.
         		colorMap[londonWeather.get(3).getDate().get(Calendar.DAY_OF_WEEK) - 1]);
         btn4.setOnAction(e -> {
@@ -164,7 +164,7 @@ public class IpadPgOverview extends IpadPage{
         });
         GridPane.setRowIndex(btn4, 3);
         GridPane.setColumnIndex(btn4, 0);
-        mainContentGrid.getChildren().add(btn4);
+        leftContentGrid.getChildren().add(btn4);
 	}
 
 	@Override
