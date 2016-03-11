@@ -90,11 +90,13 @@ public class WeatherApp extends Application{
     	Page tripplanner = new PgTripplanner();
     	Page tripdetail = new PgTripdetail();
     	Page editTrip = new PgEdittrip();
+    	Page clothsuggest = new PgTripcloth();
     	iPhonePages.put(overview.getName(), overview);
     	iPhonePages.put(triplist.getName(), triplist);
     	iPhonePages.put(tripplanner.getName(), tripplanner);
     	iPhonePages.put(tripdetail.getName(), tripdetail);
     	iPhonePages.put(editTrip.getName(), editTrip);
+    	iPhonePages.put(clothsuggest.getName(), clothsuggest);
     	
     	
     	// Create iPad pages
@@ -102,6 +104,8 @@ public class WeatherApp extends Application{
     	IpadPage ipadtriplist = new IpadPgTriplist();
     	IpadPage ipadtripplanner = new IpadPgTripplanner();
     	IpadPage ipadtripdetail = new IpadPgTripdetail();
+    	
+    	
     	iPadPages.put(ipadoverview.getName(), ipadoverview);
     	iPadPages.put(ipadtriplist.getName(), ipadtriplist);
     	iPadPages.put(ipadtripplanner.getName(), ipadtripplanner);

@@ -173,7 +173,7 @@ public class IpadPgTriplist extends IpadPage{
 
 	@Override
 	void rightButtonAction() {
-		WeatherApp.changePage("clothsuggest");
+		WeatherApp.changePage("ipadtripcloth");
 	}
 
 }
