@@ -43,8 +43,7 @@ public class WeatherApp extends Application{
 	
 	// Wind icon map
 	public static final String[] windIconMap = {
-		"\u0023", "\u002e", "\u00b7", "u003f", 
-		"u00bf",  "u0022", "u0027", "u003b"
+		"\u0023", "\u002e", "\u00b7", "\u003f", "\u00bf",  "\"",  "\u0027", "\u003b"
 	};
 	
 	public static void main(String[] args) {

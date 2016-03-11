@@ -1,16 +1,18 @@
 package gui;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.TextAlignment;
 import api.Trip;
 import api.Weather;
@@ -50,7 +52,7 @@ public class PgTriplist extends Page{
 			startWeatherIcon.getStyleClass().add("weathericon");
 			startWeatherIcon.setId("triplistwicon");
 			startWeatherIcon.setPrefWidth(75);
-			startWeatherIcon.setTranslateY(-5);
+			startWeatherIcon.setTranslateY(-15);
 			startWeatherIcon.setAlignment(Pos.CENTER);
 			startWeatherPane.getChildren().add(startWeatherIcon);
 			
@@ -93,7 +95,7 @@ public class PgTriplist extends Page{
 			destWeatherIcon.getStyleClass().add("weathericon");
 			destWeatherIcon.setId("triplistwicon");
 			destWeatherIcon.setPrefWidth(75);
-			destWeatherIcon.setTranslateY(-5);
+			destWeatherIcon.setTranslateY(-15);
 			destWeatherIcon.setAlignment(Pos.CENTER);
 			destWeatherPane.getChildren().add(destWeatherIcon);
 			
@@ -144,6 +146,11 @@ public class PgTriplist extends Page{
 		        tripBtn.setPrefSize(320, 108);
 		        tripBtn.setStyle("-fx-background-color: " + WeatherApp.
 		        		colorMap[WeatherApp.currentlyViewingDay]);
+		        tripBtn.setBorder(new Border(new BorderStroke(
+						Color.web("#7d7d7d"), 
+						BorderStrokeStyle.SOLID,
+						CornerRadii.EMPTY,
+						new BorderWidths(0, 0, 1, 0))));
 		        tripBtn.setOnAction(e -> {
 		        	WeatherApp.currentlyViewingTrip = trip;
 		        	WeatherApp.changePage("tripdetail");

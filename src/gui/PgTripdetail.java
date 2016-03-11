@@ -1,15 +1,19 @@
 package gui;
 
-import java.util.Calendar;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import api.Trip;
 import api.Weather;
 import api.YWeatherConnection;
@@ -27,7 +31,6 @@ public class PgTripdetail extends Page{
 			
 			infoPane = new VBox();
 			infoPane.setAlignment(Pos.CENTER);
-			infoPane.getStyleClass().add("bordered");
 			infoPane.setPrefHeight(216);
 			infoPane.setStyle("-fx-background-color: " + WeatherApp.
 	        		colorMap[WeatherApp.currentlyViewingDay]);
@@ -84,7 +87,7 @@ public class PgTripdetail extends Page{
 			weatherIcon.getStyleClass().add("weathericon");
 			weatherIcon.setId("tripdetailwicon");
 			weatherIcon.setPrefWidth(120);
-			weatherIcon.setTranslateY(-5);
+			weatherIcon.setTranslateY(-10);
 			weatherIcon.setAlignment(Pos.CENTER);
 			weatherDetails.getChildren().add(weatherIcon);
 			
@@ -96,7 +99,7 @@ public class PgTripdetail extends Page{
 					windIconMap[((weather.getWindDir() + 22)%360)/45]);
 			windIcon.getStyleClass().add("weathericon");
 			windIcon.setId("tripdetailwind");
-			windIcon.setTranslateY(-5);
+			windIcon.setTranslateY(-10);
 			windDetails.getChildren().add(windIcon);
 			
 			Label windSpeed = new Label(weather.getWindSpeed() + " mph");
@@ -129,6 +132,11 @@ public class PgTripdetail extends Page{
 		TripdetailPane start = new TripdetailPane(WeatherApp.currentlyViewingTrip, true);
 		TripdetailPane dest = new TripdetailPane(WeatherApp.currentlyViewingTrip, false);
 		
+		start.getPane().setBorder(new Border(new BorderStroke(
+				Color.web("#7d7d7d"), 
+				BorderStrokeStyle.SOLID,
+				CornerRadii.EMPTY,
+				new BorderWidths(0, 0, 2, 0))));
 		GridPane.setColumnIndex(start.getPane(), 0);
 		GridPane.setRowIndex(start.getPane(), 0);
 		mainContentGrid.getChildren().add(start.getPane());

@@ -34,7 +34,7 @@
 }
 
 #overviewwicon {
-    -fx-font-size: 52pt;
+    -fx-font-size: 40pt;
 }
 
 .overviewtemp {
@@ -75,7 +75,7 @@
 }
 
 #triplistwicon {
-    -fx-font-size: 32pt;
+    -fx-font-size: 28pt;
 }
 
 .arrow {
@@ -145,11 +145,6 @@
 }
 
 .bordered {
-    -fx-border-width: 1;
-    -fx-border-color: white;
-}
-
-.label {
     -fx-border-width: 1;
     -fx-border-color: white;
 }
