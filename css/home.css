@@ -144,9 +144,11 @@
     -fx-font-size: 12pt;
 }
 
-.bordered {
-    -fx-border-width: 1;
-    -fx-border-color: white;
+#edittriptitle {
+	-fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: 700;
+    -fx-font-size: 22pt;
 }
 
 #addbtn {
@@ -156,33 +158,29 @@
     -fx-font-size: 50pt;
 }
 
-
 #textField {
-    -fx-background-color: #0099cc, #0099cc, #0099cc;
+    -fx-background-color: #00bff3, #00bff3, #00bff3;
     -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
     -fx-prompt-text-fill: white;
-     -fx-effect: innershadow(three-pass-box, #0099cc, 12 , 0.5, 1, 1);
-     -fx-alignment: center-left;
+    -fx-text-fill: white;
+    -fx-effect: innershadow(three-pass-box, #00bff3, 12 , 0.5, 1, 1);
+    -fx-alignment: center-left;
 }
 #textField:focused {
-    -fx-background-color: #a9a9a9 , white , white;
     -fx-background-insets: 0 0 0 0, 0 0 0 0, 1 1, 1 1;
 }
 
 #navButton {
-	
 	-fx-text-fill: white;
 	-fx-background-color: #464646
-	
 }
 #title{
 	-fx-text-fill: white;
     -fx-font-family: "Helvetica";
     -fx-font-size: 20pt;
-	
 }
 #tripPane{
-	-fx-background-color: #0099cc
+	-fx-background-color: #00bff3
 }
 #daysButtons{
  		-fx-background-radius: 3em; 
@@ -192,8 +190,7 @@
         -fx-min-height: 40px;
         -fx-max-width: 40px; 
         -fx-max-height: 40px;
-       	-fx-background-color: #0099cc;
+       	-fx-background-color: #00bff3;
         -fx-background-insets: 0px;
         -fx-padding: 1px;
-
 }

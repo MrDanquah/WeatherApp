@@ -102,12 +102,10 @@ public class WeatherApp extends Application{
     	IpadPage ipadtriplist = new IpadPgTriplist();
     	IpadPage ipadtripplanner = new IpadPgTripplanner();
     	IpadPage ipadtripdetail = new IpadPgTripdetail();
-    	IpadPage ipadeditTrip = new IpadPgEdittrip();
     	iPadPages.put(ipadoverview.getName(), ipadoverview);
     	iPadPages.put(ipadtriplist.getName(), ipadtriplist);
     	iPadPages.put(ipadtripplanner.getName(), ipadtripplanner);
     	iPadPages.put(ipadtripdetail.getName(), ipadtripdetail);
-    	iPadPages.put(ipadeditTrip.getName(), ipadeditTrip);
         
     	if(isIphone) {
     		window.setScene(overview.getScene());
@@ -123,6 +121,12 @@ public class WeatherApp extends Application{
     		iPhonePages.get(name).refreshPage();
         	window.setScene(iPhonePages.get(name).getScene());
     	} else {
+    		if(name == "edittrip") {
+    			name = "tripplanner";
+    		}
+    		if(name == "clothsuggest") {
+    			name = "triplist";
+    		}
     		iPadPages.get(name).refreshPage();
         	window.setScene(iPadPages.get(name).getScene());
     	}

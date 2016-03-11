@@ -28,8 +28,8 @@ public class Trip {
 	public String getStart() {
 		return start;
 	}
-	public void setRepeat(boolean newRValue, int index) {
-		repeat[index] = newRValue;
+	public void setRepeat(boolean newRValue[]) {
+		System.arraycopy(newRValue, 0, repeat, 0, newRValue.length);
 	}
 	public String getDest() {
 		return dest;
@@ -71,8 +71,16 @@ public class Trip {
 	public int getStartWoeid() {
 		return startWoeid;
 	}
+	
+	public void setStartWoeid(int woeid) {
+		startWoeid = woeid;
+	}
 
 	public int getDestWoeid() {
 		return destWoeid;
+	}
+	
+	public void setDestWoeid(int woeid) {
+		destWoeid = woeid;
 	}
 }

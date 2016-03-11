@@ -48,9 +48,6 @@ public abstract class IpadPage {
 		navBar = new HBox();
 		navBar.setPrefSize(1024, 68);
 		
-		// Create the main content
-		createContent();
-		
 		// Create the nav bar
 		lButton = new Button(leftButtonText);
 		lButton.setPrefSize(512, 68);
@@ -73,6 +70,9 @@ public abstract class IpadPage {
 		rButton.setOnAction(e -> rightButtonAction());
 		
 		navBar.getChildren().addAll(lButton, rButton);
+		
+		// Create the main content
+		createContent();
 		
 		// Add main content and navbar to the scene and generate the scene
 		pageContentandNav.getChildren().addAll(pageContent, navBar);

@@ -150,9 +150,40 @@
     -fx-font-size: 18pt;
 }
 
-.bordered {
-    -fx-border-width: 1;
-    -fx-border-color: white;
+#edittrippane{
+	-fx-background-color: #00bff3
+}
+
+#edittriptitle {
+	-fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-weight: 700;
+    -fx-font-size: 36pt;
+}
+
+#daysButtons{
+ 		-fx-background-radius: 3em; 
+ 		-fx-text-fill: white;
+ 		-fx-font-family: "Helvetica";
+        -fx-min-width: 60px;
+        -fx-min-height: 60px;
+        -fx-max-width: 60px; 
+        -fx-max-height: 60px;
+       	-fx-background-color: #00bff3;
+        -fx-background-insets: 0px;
+        -fx-padding: 1px;
+}
+
+#textField {
+    -fx-background-color: #00bff3, #00bff3, #00bff3;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+    -fx-effect: innershadow(three-pass-box, #00bff3, 12 , 0.5, 1, 1);
+    -fx-alignment: center-left;
+}
+#textField:focused {
+    -fx-background-insets: 0 0 0 0, 0 0 0 0, 1 1, 1 1;
 }
 
 #addbtn {
@@ -168,7 +199,7 @@
     -fx-padding: 4 4 4 4;
 }
 #navButton {
-	-fx-background-color: #333333;
+	-fx-background-color: #464646;
 	-fx-text-fill: white;
 	
 }
