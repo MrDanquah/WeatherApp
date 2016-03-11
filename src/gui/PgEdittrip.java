@@ -15,7 +15,7 @@ public class PgEdittrip extends Page {
 
 		EditTripPane(Trip trip) {
 			inputPane = new VBox();
-			inputPane.setAlignment(Pos.CENTER.TOP_CENTER);
+			inputPane.setAlignment(Pos.TOP_CENTER);
 			inputPane.setSpacing(4);
 			inputPane.setPrefSize(320, 432);
 
