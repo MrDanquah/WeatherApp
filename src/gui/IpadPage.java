@@ -3,6 +3,9 @@ package gui;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -34,6 +37,7 @@ public abstract class IpadPage {
 		
 		// Set up the grids and layout managers
 		pageContentandNav = new VBox();
+		pageContentandNav.setPrefSize(1024, 768);
 		pageContent = new HBox();
 		pageContent.setAlignment(Pos.CENTER);
 		leftContentGrid = new GridPane();
@@ -73,7 +77,25 @@ public abstract class IpadPage {
 		// Add main content and navbar to the scene and generate the scene
 		pageContentandNav.getChildren().addAll(pageContent, navBar);
 		
-		pageScene = new Scene(pageContentandNav, 1024, 768);
+		// Create menubar
+		MenuBar menuBar = new MenuBar();
+    	menuBar.setPrefHeight(32);
+        Menu menuVers = new Menu("Version");
+        MenuItem ipad = new MenuItem("iPad");
+        ipad.setOnAction(e -> {
+        	WeatherApp.isIphone = false;
+        	WeatherApp.changePage(WeatherApp.currentPageName);
+        });
+        MenuItem iphone = new MenuItem("iPhone");
+        iphone.setOnAction(e -> {
+        	WeatherApp.isIphone = true;
+        	WeatherApp.changePage(WeatherApp.currentPageName);
+        });
+        menuVers.getItems().addAll(ipad, iphone);
+        menuBar.getMenus().add(menuVers);
+		
+		pageScene = new Scene(pageContentandNav, 1024, 800);
+		((VBox) pageScene.getRoot()).getChildren().add(menuBar);
 		pageScene.getStylesheets().add(getClass().getResource("/ipad.css").toExternalForm());
 	}
 

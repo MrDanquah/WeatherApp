@@ -6,14 +6,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import api.Trip;
 import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import api.Trip;
 
 public class WeatherApp extends Application{
 	private static Stage window;
-	public static boolean isIphone = false; // Whether we are running iPhone or iPad version
+	public static boolean isIphone = true; // Whether we are running iPhone or iPad version
 	private static Map<String, Page> iPhonePages = new HashMap<String, Page>();
 	private static Map<String, IpadPage> iPadPages = new HashMap<String, IpadPage>();
 	public static List<Trip> trips = new ArrayList<Trip>();
@@ -22,6 +22,7 @@ public class WeatherApp extends Application{
 	public static int currentlyViewingDayIdx; // 0 is for today, 1 for tomorrow, 2..., 3...
 	public static int currentlyViewingDay;
 	public static Trip currentlyViewingTrip;
+	public static String currentPageName;
 	
 	// Color map for each day of the week
 	public static final String[] colorMap = {
@@ -104,12 +105,13 @@ public class WeatherApp extends Application{
     	iPadPages.put(ipadtripplanner.getName(), ipadtripplanner);
     	iPadPages.put(ipadtripdetail.getName(), ipadtripdetail);
     	iPadPages.put(ipadeditTrip.getName(), ipadeditTrip);
-    	
+        
     	if(isIphone) {
     		window.setScene(overview.getScene());
     	} else {
     		window.setScene(ipadoverview.getScene());
     	}
+    	currentPageName = "overview";
         window.show();
     }
     
@@ -121,6 +123,7 @@ public class WeatherApp extends Application{
     		iPadPages.get(name).refreshPage();
         	window.setScene(iPadPages.get(name).getScene());
     	}
+    	currentPageName = name;
     }
     
     /*
