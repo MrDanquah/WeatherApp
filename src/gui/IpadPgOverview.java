@@ -52,7 +52,7 @@ public class IpadPgOverview extends IpadPage{
 			weatherIcon = new Label(WeatherApp.weatherIconMap[weather.getCondCode()]);
 			weatherIcon.getStyleClass().add("weathericon");
 			weatherIcon.setId("overviewwicon");
-			weatherIcon.setTranslateY(-5);
+			weatherIcon.setTranslateY(-15);
 			weatherIcon.setTranslateX(5);
 			weatherIcon.setPrefWidth(160);
 			weatherIcon.setAlignment(Pos.CENTER);

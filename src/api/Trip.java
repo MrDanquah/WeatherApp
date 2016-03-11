@@ -8,12 +8,13 @@ public class Trip {
 	private int startWoeid;
 	private String dest;
 	private int destWoeid;
-	private Calendar arrivetime; // We are using calendar for ease of storing time
+	private Calendar arrivetime; // We are using calendar for ease of storing
+									// time
 	private Calendar commutetime; // but we will only be using the time fields
 	private boolean repeat[]; // [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
-	
-	public Trip(String start, int startWoeid, String dest, int destWoeid, 
-			Calendar arrivetime, Calendar commutetime, boolean repeat[]) {
+
+	public Trip(String start, int startWoeid, String dest, int destWoeid, Calendar arrivetime, Calendar commutetime,
+			boolean repeat[]) {
 		this.start = start;
 		this.startWoeid = startWoeid;
 		this.dest = dest;
@@ -31,7 +32,23 @@ public class Trip {
 	public String getDest() {
 		return dest;
 	}
-	
+
+	public void setStart(String newStart) {
+		start = newStart;
+	}
+
+	public void setDest(String newDest) {
+		dest = newDest;
+	}
+
+	public void setArriveTime(Calendar newArriveTime) {
+		arrivetime = newArriveTime;
+	}
+
+	public void setCommuteTime(Calendar newCommuteTime) {
+		commutetime = newCommuteTime;
+	}
+
 	public String getLeaveTime() {
 		SimpleDateFormat sdfmt = new SimpleDateFormat("h:mm a");
 		Calendar leavetime = (Calendar) arrivetime.clone();
@@ -39,20 +56,20 @@ public class Trip {
 		leavetime.add(Calendar.MINUTE, -commutetime.get(Calendar.MINUTE));
 		return sdfmt.format(leavetime.getTime());
 	}
-	
+
 	public String getArriveTime() {
 		SimpleDateFormat sdfmt = new SimpleDateFormat("h:mm a");
 		return (sdfmt.format(arrivetime.getTime()));
 	}
-	
+
 	public boolean[] getRepeat() {
 		return repeat;
 	}
-	
+
 	public int getStartWoeid() {
 		return startWoeid;
 	}
-	
+
 	public int getDestWoeid() {
 		return destWoeid;
 	}
