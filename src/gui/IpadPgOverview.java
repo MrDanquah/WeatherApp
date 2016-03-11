@@ -13,7 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import api.Trip;
 import api.Weather;
 import api.YWeatherConnection;
 
@@ -31,7 +30,7 @@ public class IpadPgOverview extends IpadPage{
 			VBox dayAndDate = new VBox();
 			dayAndDate.setAlignment(Pos.CENTER_LEFT);
 			dayAndDate.setPadding(new Insets(0, 0, 0, 10));
-			dayAndDate.setPrefWidth(110);
+			dayAndDate.setPrefWidth(176);
 			
 			SimpleDateFormat sdfmt = new SimpleDateFormat("EEE");
 			Calendar date = weather.getDate();
@@ -55,13 +54,13 @@ public class IpadPgOverview extends IpadPage{
 			weatherIcon.setId("overviewwicon");
 			weatherIcon.setTranslateY(-5);
 			weatherIcon.setTranslateX(5);
-			weatherIcon.setPrefWidth(100);
+			weatherIcon.setPrefWidth(160);
 			weatherIcon.setAlignment(Pos.CENTER);
 			infoPane.getChildren().add(weatherIcon);
 			
 			VBox tempAndText = new VBox();
 			tempAndText.setAlignment(Pos.CENTER);
-			tempAndText.setPrefWidth(110);
+			tempAndText.setPrefWidth(176);
 			
 			if(weather.getIsForecast()) {
 				HBox hilo = new HBox();
@@ -90,7 +89,6 @@ public class IpadPgOverview extends IpadPage{
 			tempAndText.getChildren().add(condText);
 
 			infoPane.getChildren().add(tempAndText);
-			
 		}
 		
 		public HBox getPane() {
@@ -103,15 +101,12 @@ public class IpadPgOverview extends IpadPage{
 		
 		public CurrentWeatherPane(Weather weather) {
 			infoPane = new VBox();
-			infoPane.setAlignment(Pos.CENTER);
+			infoPane.setAlignment(Pos.TOP_CENTER);
 			infoPane.setPrefHeight(700);
 			infoPane.setStyle("-fx-background-color: " + WeatherApp.
 	        		colorMap[weather.getDate().get(Calendar.DAY_OF_WEEK) - 1]);
 			
-			// Special region used to help with centering
-			Region topRegion = new Region();
-			VBox.setVgrow(topRegion, Priority.ALWAYS);
-			infoPane.getChildren().add(topRegion);
+			
 			
 			// Location
 			Label name = new Label("Current London Weather");
@@ -184,6 +179,21 @@ public class IpadPgOverview extends IpadPage{
 			weatherDetails.getChildren().add(windDetails);
 			
 			infoPane.getChildren().add(weatherDetails);
+			
+			VBox moreinfo = new VBox();
+			moreinfo.setPadding(new Insets(0, 0, 0, 15));
+			moreinfo.setAlignment(Pos.CENTER_LEFT);
+			
+			Label humidity = new Label("Humidity: " + weather.getHumidity() + "%");
+			humidity.getStyleClass().add("tripdetailmoreinfo");
+			moreinfo.getChildren().add(humidity);
+			
+			String visibilityText = weather.getVisibility() > 2 ? "Good" : "Bad";
+			Label visibility = new Label("Visibility: " + visibilityText);
+			visibility.getStyleClass().add("tripdetailmoreinfo");
+			moreinfo.getChildren().add(visibility);
+			
+			infoPane.getChildren().add(moreinfo);
 			
 			// Special region used to help with centering
 			Region bottomRegion = new Region();

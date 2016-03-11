@@ -105,7 +105,11 @@ public class WeatherApp extends Application{
     	iPadPages.put(ipadtripdetail.getName(), ipadtripdetail);
     	iPadPages.put(ipadeditTrip.getName(), ipadeditTrip);
     	
-        window.setScene(overview.getScene());
+    	if(isIphone) {
+    		window.setScene(overview.getScene());
+    	} else {
+    		window.setScene(ipadoverview.getScene());
+    	}
         window.show();
     }
     

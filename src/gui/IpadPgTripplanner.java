@@ -46,9 +46,11 @@ public class IpadPgTripplanner extends IpadPage{
 			startName.setAlignment(Pos.CENTER_LEFT);
 			tripNames.getChildren().add(startName);
 			
-			Label arrow = new Label(">");
-			arrow.getStyleClass().add("arrow");
-			arrow.setAlignment(Pos.CENTER);
+			// Arrow
+			ImageView arrow = new ImageView("arrow_forward.png");
+			arrow.setFitWidth(32);
+			arrow.setPreserveRatio(true);
+			arrow.setCache(true);
 			tripNames.getChildren().add(arrow);
 			
 			Label destName = new Label(trip.getDest());

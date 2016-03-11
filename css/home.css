@@ -1,24 +1,10 @@
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-}
-
 .root {
      -fx-background-color: #7d7d7d;
 }
 
 .button {
     -fx-background-radius: 0;
-    -fx-background-color: #7d7d7d;
+    -fx-background-color: rgba(0, 0, 0, 0);
     -fx-padding: 0;
 }
 
@@ -60,7 +46,7 @@
 .overviewhilo {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
-    -fx-font-size: 24pt;
+    -fx-font-size: 22pt;
 }
 
 .overviewtext {
@@ -166,6 +152,7 @@
 #addbtn {
     -fx-text-fill: white;
     -fx-font-family: "Helvetica";
+    -fx-background-color: #7d7d7d;
     -fx-font-size: 50pt;
 }
 

@@ -117,6 +117,8 @@ public class YWeatherConnection {
 		int hi, lo;
 		int windDir, windSpeed;
 		int condCode;
+		int humidity;
+		double visibility;
 		String condText;
 		Calendar date;
 		String location;
@@ -139,6 +141,9 @@ public class YWeatherConnection {
 		windDir = results.getJSONObject("wind").getInt("direction");
 		windSpeed = (int) results.getJSONObject("wind").getDouble("speed");
 		
+		humidity = results.getJSONObject("atmosphere").getInt("humidity");
+		visibility = results.getJSONObject("atmosphere").getDouble("visibility");
+		
 		SimpleDateFormat sdfmt = new SimpleDateFormat("d MMM yyyy");
 		date = Calendar.getInstance();
 		// Stupid Yahoo Weather doesn't update at midnight, so we are stuck with 
@@ -152,7 +157,8 @@ public class YWeatherConnection {
 		location = results.getJSONObject("location").getString("city");
 		
 		weatherData.add(new Weather(
-				false, current, hi, lo, windDir, windSpeed, condCode, condText, date, location, woeid));
+				false, current, hi, lo, windDir, windSpeed, humidity, visibility,
+				condCode, condText, date, location, woeid));
 		
 		// Get the forecast for next 3 days
 		for(int i = 1; i < 4; i++) {
@@ -169,7 +175,8 @@ public class YWeatherConnection {
 			}
 			
 			weatherData.add(new Weather(
-					true, current, hi, lo, windDir, windSpeed, condCode, condText, date, location, woeid));
+					true, current, hi, lo, windDir, windSpeed, humidity, visibility, 
+					condCode, condText, date, location, woeid));
 		}
 		
 		return weatherData;
