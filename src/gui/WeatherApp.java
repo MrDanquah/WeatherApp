@@ -6,10 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import api.Trip;
 import javafx.application.Application;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import api.Trip;
+import javafx.stage.StageStyle;
 
 public class WeatherApp extends Application{
 	private static Stage window;
@@ -56,6 +57,8 @@ public class WeatherApp extends Application{
     @Override
     public void start(Stage primaryStage) {
     	// Load the custom weather icons font
+        //primaryStage.initStyle(StageStyle.UNDECORATED);
+
     	Font.loadFont(getClass().getResource("/artillclean_fixed.otf").toExternalForm(), 12f);
     	
     	window = primaryStage;

@@ -116,13 +116,13 @@ public class PgEdittrip extends Page {
 
 			daysButtons.getChildren().addAll(sunday, monday, tuesday, wednesday, thursday, friday, saturday);
 			Button[] myDays = { sunday, monday, tuesday, wednesday, thursday, friday, saturday };
-		
+			
 			for (Button dayButton : myDays) {
 
 				
 					
 					dayButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>(){
-
+						
 						@Override
 						public void handle(MouseEvent event) {
 							if(event.getClickCount() % 2 == 0) {
@@ -130,7 +130,7 @@ public class PgEdittrip extends Page {
 								trip.setRepeat(true, 1);
 							} else {
 								dayButton.setStyle("-fx-background-color:#0099cc");
-								trip.setRepeat(false, 1 );
+								trip.setRepeat(false, 1);
 							}
 							
 						} 
