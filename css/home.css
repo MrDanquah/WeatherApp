@@ -197,3 +197,8 @@
         -fx-padding: 1px;
 
 }
+#clothing {
+	-fx-text-fill: white;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 20pt;
+}

@@ -2,34 +2,42 @@ package gui;
 
 import javafx.scene.layout.GridPane;
 
-public class IpadPgTripcloth extends Page {
-	
+public class IpadPgTripcloth extends IpadPage {
+
 	private class ClothingPane {
-		GridPane clothPane;
+		GridPane clothGrid;
+
+		public ClothingPane() {
+			clothGrid = new GridPane();
+
+			clothGrid.setPrefSize(1024, 700);
+
+			clothGrid.setGridLinesVisible(true);
+
+		}
 		
 	}
 
-	public IpadPgTripcloth(String name, String displayName, String leftButtonText, String rightButtonText) {
-		super(name, displayName, leftButtonText, rightButtonText);
+	public IpadPgTripcloth() {
+		super("tripCloth", "clothing", "Back", "");
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	void leftButtonAction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	void rightButtonAction() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	void createContent() {
-		// TODO Auto-generated method stub
-		
+		ClothingPane myCloths = new ClothingPane();
 	}
 
 }
