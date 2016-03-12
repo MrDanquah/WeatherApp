@@ -231,7 +231,7 @@ public class PgEdittrip extends Page {
 	void rightButtonAction() {
 		Calendar arrTime = Calendar.getInstance();
 
-		SimpleDateFormat sdfmt1 = new SimpleDateFormat("h:mm a");
+		SimpleDateFormat sdfmt1 = new SimpleDateFormat("h:mm");
 		try {
 			arrTime.setTime(sdfmt1.parse(arrivalTime.getText()));
 		} catch (Exception e1) {

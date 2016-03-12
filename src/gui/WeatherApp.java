@@ -57,7 +57,7 @@ public class WeatherApp extends Application{
     @Override
     public void start(Stage primaryStage) {
     	// Load the custom weather icons font
-        //primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.UNDECORATED);
 
     	Font.loadFont(getClass().getResource("/artillclean_fixed.otf").toExternalForm(), 12f);
     	
